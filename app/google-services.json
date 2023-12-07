@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837979280505",
+    "project_id": "georgebrowncollege",
+    "storage_bucket": "georgebrowncollege.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837979280505:android:c29487cdecb9070dd370a8",
+        "android_client_info": {
+          "package_name": "com.example.lostandfound"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYEzhnRtZbX35p_gBdUfkAnUW0GWbfk-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
