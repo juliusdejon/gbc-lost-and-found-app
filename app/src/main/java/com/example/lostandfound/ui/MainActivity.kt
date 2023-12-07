@@ -1,7 +1,8 @@
-package com.example.lostandfound
+package com.example.lostandfound.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.lostandfound.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
