@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         when(v?.id) {
             R.id.btnReport -> {
                 Log.d("APP", "onClick: ")
-                val intent = Intent(this@MainActivity, ReporterSignupActivity::class.java)
+                val intent = Intent(this@MainActivity, ReporterLoginActivity::class.java)
                 startActivity(intent)
             }
         }

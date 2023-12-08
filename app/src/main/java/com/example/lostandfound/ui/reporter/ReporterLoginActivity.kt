@@ -8,6 +8,7 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
 import com.example.lostandfound.R
+import com.example.lostandfound.controller.AuthController
 import com.example.lostandfound.data.repositories.UserRepository
 import com.example.lostandfound.databinding.ActivityReporterLoginBinding
 import com.example.lostandfound.databinding.ActivityReporterSignupBinding
@@ -20,6 +21,7 @@ class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
     private val TAG = "ReporterLoginActivity"
     private lateinit var binding: ActivityReporterLoginBinding
     private  lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var authController: AuthController
     private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,7 @@ class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
         binding.btnCreateNewAccount.setOnClickListener(this)
         this.firebaseAuth = FirebaseAuth.getInstance()
         this.userRepository = UserRepository(applicationContext)
+        authController = AuthController(this, this.userRepository)
     }
 
     override fun onClick(view: View?) {
@@ -40,7 +43,7 @@ class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
                     val email = binding.etEmail.text.toString()
                     val password = binding.etPassword.text.toString()
                     val type = "reporter"
-                    signIn(
+                    authController.signIn(
                         email,
                         password,
                     )
@@ -53,22 +56,7 @@ class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
-    private fun signIn(email: String, password: String) {
-        //signIn using FirebaseAuth
-        this.firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this){task ->
-                if (task.isSuccessful){
-                    Log.d(TAG, "signIn: Login successful")
-//                    saveToPrefs(email, password)
-                    goToMain()
-                }else{
-                    Log.e(TAG, "signIn: Login Failed : ${task.exception}", )
-                    Toast.makeText(this@ReporterLoginActivity,
-                        "Authentication failed. Check the credentials",
-                        Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
+
 
     private fun goToMain() {
         val mainIntent = Intent(this, MainActivity::class.java)

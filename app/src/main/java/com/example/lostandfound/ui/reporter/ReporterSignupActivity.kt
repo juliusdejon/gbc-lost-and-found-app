@@ -7,15 +7,13 @@ import android.view.View.OnClickListener
 import com.example.lostandfound.R
 import com.example.lostandfound.data.repositories.UserRepository
 import com.example.lostandfound.databinding.ActivityReporterSignupBinding
-import com.example.lostandfound.controller.Auth
+import com.example.lostandfound.controller.AuthController
 import com.google.firebase.auth.FirebaseAuth
 
 class ReporterSignupActivity : AppCompatActivity(), OnClickListener {
-    private val TAG = "ReporterSignupActivity"
     private lateinit var binding: ActivityReporterSignupBinding
-    private  lateinit var firebaseAuth : FirebaseAuth
     private lateinit var userRepository: UserRepository
-    private lateinit var authController: Auth
+    private lateinit var authController: AuthController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +22,7 @@ class ReporterSignupActivity : AppCompatActivity(), OnClickListener {
 
         binding.btnSignUp.setOnClickListener(this)
         this.userRepository = UserRepository(applicationContext)
-        authController = Auth(this, this.userRepository)
+        authController = AuthController(this, this.userRepository)
 
     }
 
@@ -48,7 +46,4 @@ class ReporterSignupActivity : AppCompatActivity(), OnClickListener {
             }
         }
     }
-
-
-
 }
