@@ -3,6 +3,7 @@ package com.example.lostandfound.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import com.example.lostandfound.R
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnReport -> {
+                Log.d("APP", "onClick: ")
                 val intent = Intent(this@MainActivity, ReporterSignupActivity::class.java)
                 startActivity(intent)
             }
