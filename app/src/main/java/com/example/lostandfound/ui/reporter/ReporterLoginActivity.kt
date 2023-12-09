@@ -3,23 +3,16 @@ package com.example.lostandfound.ui.reporter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
-import android.widget.Toast
-import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import androidx.lifecycle.lifecycleScope
 import com.example.lostandfound.R
 import com.example.lostandfound.controller.AuthController
 import com.example.lostandfound.controller.UserController
 import com.example.lostandfound.data.repositories.UserRepository
 import com.example.lostandfound.databinding.ActivityReporterLoginBinding
-import com.example.lostandfound.databinding.ActivityReporterSignupBinding
-import com.example.lostandfound.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
     private val TAG:String = "ReporterLoginActivity"
@@ -84,7 +77,7 @@ class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
-    fun register() {
+    private fun register() {
         val intent = Intent(this@ReporterLoginActivity, ReporterSignupActivity::class.java)
         startActivity(intent)
     }
