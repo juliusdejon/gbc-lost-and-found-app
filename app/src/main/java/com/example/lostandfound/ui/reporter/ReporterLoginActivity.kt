@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.example.lostandfound.R
 import com.example.lostandfound.controller.AuthController
 import com.example.lostandfound.data.repositories.UserRepository
@@ -15,6 +16,7 @@ import com.example.lostandfound.databinding.ActivityReporterSignupBinding
 import com.example.lostandfound.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.auth.User
+import kotlinx.coroutines.launch
 import kotlin.math.sign
 
 class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
@@ -43,10 +45,17 @@ class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
                     val email = binding.etEmail.text.toString()
                     val password = binding.etPassword.text.toString()
                     val type = "reporter"
-                    authController.signIn(
-                        email,
-                        password,
-                    )
+                    lifecycleScope.launch {
+                        val success = authController.signIn(
+                            email,
+                            password,
+                        )
+                        if (success) {
+                            val intent = Intent(this@ReporterLoginActivity, ReporterHomePageActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
+
                 }
                 R.id.btnCreateNewAccount -> {
                     val intent = Intent(this@ReporterLoginActivity, ReporterSignupActivity::class.java)
@@ -55,12 +64,4 @@ class ReporterLoginActivity : AppCompatActivity(), OnClickListener {
             }
         }
     }
-
-
-
-    private fun goToMain() {
-        val mainIntent = Intent(this, MainActivity::class.java)
-        startActivity(mainIntent)
-    }
-
 }

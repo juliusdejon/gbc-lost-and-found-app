@@ -9,7 +9,6 @@ import android.view.View.OnClickListener
 import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityMainBinding
 import com.example.lostandfound.ui.reporter.ReporterLoginActivity
-import com.example.lostandfound.ui.reporter.ReporterSignupActivity
 
 class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var binding: ActivityMainBinding
