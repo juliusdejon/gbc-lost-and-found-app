@@ -1,6 +1,8 @@
 package com.example.lostandfound.models
 
-class Case(
+import java.util.UUID
+
+data class Case(
     var type: String,
     var description: String,
     var image: String,
@@ -8,6 +10,9 @@ class Case(
     var lat: Double,
     var lng: Double,
     var isClaimed: Boolean,
+    val id : String = UUID.randomUUID().toString()
 ) {
+
+
 
 }

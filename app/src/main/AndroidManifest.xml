@@ -16,6 +16,9 @@
             android:name=".ui.reporter.ReporterHomePageActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.guest.GuestActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.reporter.ReporterLoginActivity"
             android:exported="false" />
         <activity

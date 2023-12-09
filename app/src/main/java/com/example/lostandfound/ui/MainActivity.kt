@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import androidx.core.content.ContextCompat.startActivity
 import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityMainBinding
+import com.example.lostandfound.ui.guest.GuestActivity
 import com.example.lostandfound.ui.reporter.ReporterLoginActivity
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -18,6 +20,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         setContentView(binding.root)
 
         binding.btnReport.setOnClickListener(this)
+
+        //open intent Guest Activity
+        binding.btnOpenMapView.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -26,6 +31,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 Log.d("APP", "onClick: ")
                 val intent = Intent(this@MainActivity, ReporterLoginActivity::class.java)
                 startActivity(intent)
+            }
+            R.id.btnOpenMapView -> {
+                val intent = Intent(this@MainActivity, GuestActivity::class.java)
+                startActivity(intent)
+
             }
         }
     }
