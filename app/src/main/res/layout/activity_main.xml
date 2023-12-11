@@ -18,6 +18,8 @@
         android:src="@drawable/logo"
         />
 
+
+
     <Button
         android:id="@+id/btnBrowser"
         android:layout_width="240dp"
