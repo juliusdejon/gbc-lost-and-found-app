@@ -1,6 +1,7 @@
 package com.example.lostandfound.adapters
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,17 +11,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lostandfound.R
 import com.example.lostandfound.models.Case
+import com.google.firebase.storage.FirebaseStorage
 
-class CaseAdapter (private val caseList:MutableList<Case>) :
+
+class CaseAdapter (private val caseList:MutableList<Case>,
+                   private val rowClickHandler: (Int) -> Unit) :
     RecyclerView.Adapter<CaseAdapter.UserViewHolder>() {
 
 
+
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder (itemView) {
-//        init {
-//            itemView.findViewById<Button>(R.id.removeBtn).setOnClickListener {
-//                delBtnClickHandler(adapterPosition)
-//            }
-//        }
+        init {
+            itemView.setOnClickListener{
+                rowClickHandler(adapterPosition)
+            }
+        }
     }
 
 
@@ -46,29 +51,32 @@ class CaseAdapter (private val caseList:MutableList<Case>) :
         val tvLine7 = holder.itemView.findViewById<TextView>(R.id.rowLayoutIsClaimed)
 //
         tvLine1.setText("ID: ${currCountry.id}")
-        tvLine2.setText("${currCountry.lat}, ${currCountry.lng}") // TODO: Convert to actual address through Geocoder
+
+        //Address
+        tvLine2.setText("${currCountry.address}")
+        //Address
+
         tvLine3.setText("${currCountry.description}")
 
-//        tvLine4. TODO: Insert Image
-//        if (i.type == "House") {
-//            val imagename = "house"
-//            val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//            this.binding.typeImage.setImageResource(res)
-//        } else if (i.type == "Condo") {
-//            val imagename = "condo"
-//            val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//            this.binding.typeImage.setImageResource(res)
-//
-//        } else if (i.type == "Apartment") {
-//            val imagename = "apartment"
-//            val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//            this.binding.typeImage.setImageResource(res)
-//
-//        } else if (i.type == "Basement") {
-//            val imagename = "basement"
-//            val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//            this.binding.typeImage.setImageResource(res)
-//        }
+
+        // Assuming you have the downloadUrl from Firebase Storage
+        val downloadUrl = "gs://georgebrowncollege.appspot.com/images/image_1702265714965.jpg"
+
+        // Get the reference to your ImageView
+        //        tvLine4
+
+        // Use Firebase Storage API to load the image
+        val storage = FirebaseStorage.getInstance()
+        val storageReference = storage.getReferenceFromUrl(downloadUrl)
+
+        // Load the image into ImageView
+        storageReference.downloadUrl.addOnSuccessListener { uri ->
+            // Use the uri to set the image in ImageView
+            tvLine4.setImageURI(uri)
+        }.addOnFailureListener { exception ->
+            // Handle the error
+            Log.e("FirebaseStorage", "Error getting download URL", exception)
+        }
 
 
 
@@ -87,4 +95,5 @@ class CaseAdapter (private val caseList:MutableList<Case>) :
         }
 
     }
+
 }

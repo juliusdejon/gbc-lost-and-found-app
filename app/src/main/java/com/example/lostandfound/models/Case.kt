@@ -7,12 +7,7 @@ data class Case(
     var description: String,
     var image: String,
     var reporter: String,
-    var lat: Double,
-    var lng: Double,
+    var address : String,
     var isClaimed: Boolean,
     val id : String = UUID.randomUUID().toString()
-) {
-
-
-
-}
+) {}

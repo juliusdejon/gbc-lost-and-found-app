@@ -76,4 +76,7 @@ dependencies {
     // If you want to additionally use the CameraX Extensions library
     implementation("androidx.camera:camera-extensions:${camerax_version}")
 
+    // used for mapbox
+    implementation("com.mapbox.maps:android:11.0.0")
+
 }

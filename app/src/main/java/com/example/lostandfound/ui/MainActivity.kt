@@ -43,15 +43,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         // open intent Guest Activity
         // binding.btnOpenMapView.setOnClickListener(this)
-        binding.btnBrowser.setOnClickListener {
-        }
+        binding.btnBrowser.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        when(v?.id) {
+        when (v?.id) {
             R.id.btnReport -> {
                 Log.d("APP", "onClick: ")
                 val intent = Intent(this@MainActivity, ReporterLoginActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.btnBrowser -> {
+                val intent = Intent(this@MainActivity, GuestActivity::class.java)
                 startActivity(intent)
             }
         }

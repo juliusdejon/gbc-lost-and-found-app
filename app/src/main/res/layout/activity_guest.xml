@@ -12,22 +12,75 @@
         android:id="@+id/menu_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F2E9FF"
+        android:background="#154854"
         app:titleTextColor="@color/black"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="0dp" />
 
+
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="196dp"
+        android:layout_height="56dp"
+        android:layout_weight="1"
+        android:hint="Enter Item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_toolbar" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF54838E"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_toolbar" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSearch">
+
+        <RadioButton
+            android:id="@+id/radioALL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="ALL" />
+
+        <RadioButton
+            android:id="@+id/radioBag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BAG" />
+
+        <RadioButton
+            android:id="@+id/radioGadget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="GADGETS" />
+
+        <RadioButton
+            android:id="@+id/radioClothes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CLOTHES" />
+    </RadioGroup>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSearch">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProperties"
@@ -38,19 +91,15 @@
 
     </ScrollView>
 
-    <EditText
-        android:id="@+id/etSearch"
-        android:layout_width="196dp"
-        android:layout_height="56dp"
-        android:layout_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_toolbar" />
-
     <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="113dp"
+        android:id="@+id/mapViewBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_toolbar" />
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="5dp"
+        android:text="MapView"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+        app:layout_constraintStart_toEndOf="@+id/etSearch" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
