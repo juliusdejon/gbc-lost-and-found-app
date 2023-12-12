@@ -9,6 +9,7 @@ import com.example.lostandfound.databinding.ActivityCreateCaseBinding
 import com.example.lostandfound.databinding.ActivityUpdateCaseBinding
 import com.example.lostandfound.models.Case
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.GeoPoint
 import com.squareup.picasso.Picasso
 
 class CaseController {
@@ -49,14 +50,22 @@ class CaseController {
         val description = binding.etDescription.text.toString()
         val addr = binding.etAddress.text.toString()
         val contactNumber = binding.etContactNumber.text.toString()
-        val lat:Double = 45.0
-        val lng:Double = 45.0
+        val lat:Double = if (binding.etLat.text.toString().isNotEmpty()) {
+            binding.etLat.text.toString().toDouble()
+        } else {
+            0.0
+        }
+        val lng:Double = if (binding.etLng.text.toString().isNotEmpty()) {
+            binding.etLng.text.toString().toDouble()
+        } else {
+            0.0
+        }
         val claimed = binding.cClaimed.isChecked
 
         val auth = FirebaseAuth.getInstance();
         val currentUserEmail = auth.currentUser?.email.toString()
 
-
+        val geoPoint = GeoPoint(lat, lng)
         val newCase = Case(
             name,
             category,
@@ -65,8 +74,7 @@ class CaseController {
             currentUserEmail,
             addr,
             contactNumber,
-            lat,
-            lng,
+            geoPoint,
             claimed,
         )
 
@@ -80,13 +88,15 @@ class CaseController {
         val description = binding.etDescription.text.toString()
         val addr = binding.etAddress.text.toString()
         val claimed = binding.cClaimed.isChecked
-        val contactNumber = binding.etContactNumber.toString()
-        val lat = 45.0
-        val lng = 45.0
+        val contactNumber = binding.etContactNumber.text.toString()
+        val lat:Double = binding.etLat.text.toString().toDouble()
+        val lng:Double = binding.etLng.text.toString().toDouble()
 
         val auth = FirebaseAuth.getInstance();
         val currentUserEmail = auth.currentUser?.email.toString()
 
+
+        val geoPoint = GeoPoint(lat, lng)
         val case = Case(
             name,
             category,
@@ -95,9 +105,9 @@ class CaseController {
             currentUserEmail,
             addr,
             contactNumber,
-            lat,
-            lng,
+            geoPoint,
             claimed,
+            caseId,
         )
 
         caseRepository.updateCase(case)

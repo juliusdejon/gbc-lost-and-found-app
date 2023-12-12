@@ -27,6 +27,7 @@ import com.example.lostandfound.databinding.ActivityCreateCaseBinding
 import com.example.lostandfound.databinding.ActivityReporterHomePageBinding
 import com.example.lostandfound.databinding.ActivityReporterLoginBinding
 import com.example.lostandfound.models.Case
+import com.example.lostandfound.models.DataHolder
 import com.example.lostandfound.ui.MainActivity
 import com.example.lostandfound.ui.guest.caseArrayList
 import com.google.android.material.snackbar.Snackbar
@@ -77,7 +78,8 @@ class ReporterHomePageActivity : AppCompatActivity() {
     }
     private fun rowClicked(position: Int) {
         val intent = Intent(this@ReporterHomePageActivity, UpdateCaseActivity::class.java)
-        intent.putExtra("case", casesList[position])
+        DataHolder.case = casesList[position]
+        intent.putExtra("capturedImage", "${casesList[position].image}")
         startActivity(intent)
     }
 
