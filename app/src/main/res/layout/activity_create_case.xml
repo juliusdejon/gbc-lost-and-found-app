@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.reporter.CreateCaseActivity"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".ui.reporter.CreateCaseActivity">
+    >
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,11 +46,20 @@
     android:layout_gravity="center"
     android:textStyle="bold"
 />
-
 <TextView
+    android:text="Name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
+    />
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:text="Image"/>
 <ImageView
     android:layout_width="match_parent"
@@ -85,6 +101,7 @@
         android:hint="Enter description"
         android:id="@+id/etDescription"
         />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,12 +109,43 @@
         android:textAlignment="center"
         android:layout_marginTop="15dp"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter Address"
+            android:id="@+id/etAddress"
+            />
+        <Button
+            android:id="@+id/btnGetCurrentLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Get current location"
+            android:backgroundTint="#154854"
+            android:layout_weight="0"
+            android:textSize="10sp"
+        />
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Number"
+    />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Address"
-        android:id="@+id/etAddress"
+        android:hint="Contact Number"
+        android:id="@+id/etContactNumber"
         />
 
 
@@ -127,4 +175,6 @@
         android:layout_marginBottom="20dp"
         />
 </LinearLayout>
+
 </LinearLayout>
+</ScrollView>
