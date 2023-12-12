@@ -5,6 +5,8 @@ import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
@@ -33,6 +35,14 @@ class GuestActivity : AppCompatActivity() {
         binding = ActivityGuestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //--------------MenuBar Init----------------------
+
+        setSupportActionBar(this.binding.menuToolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+
+        //--------------MenuBar Init----------------------
+
+        //--------------Recycler View----------------------
         caseAdapter = CaseAdapter(caseArrayList, { pos -> rowClicked(pos) })
         binding.rvProperties.layoutManager= LinearLayoutManager(this)
         binding.rvProperties.addItemDecoration(
@@ -41,6 +51,7 @@ class GuestActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
+        //--------------Recycler View----------------------
 
         this.binding.rvProperties.adapter = caseAdapter
 
@@ -48,7 +59,7 @@ class GuestActivity : AppCompatActivity() {
 
 
 
-//Search Button
+        //Search Button
         binding.btnSearch.setOnClickListener {
             val searchFromUI = binding.etSearch.text.toString()
             caseArrayList.clear()
@@ -74,14 +85,6 @@ class GuestActivity : AppCompatActivity() {
             caseRepository.retrieveCasesbyType("Clothes")
         }
         //Radio Filter Handler
-
-
-        binding.mapViewBtn.setOnClickListener {
-            var intent = Intent(this@GuestActivity, MapViewActivity::class.java)
-//            intent.putExtra("EXTRA_ID", searchedProperties[position].id)
-            startActivity(intent)
-        }
-
     }
 
     override fun onResume() {
@@ -107,5 +110,26 @@ class GuestActivity : AppCompatActivity() {
 //            val snackbar = Snackbar.make(binding.root, "Clicked Row : $position, ${caseArrayList[position].description}", Snackbar.LENGTH_LONG).show()
         }
     }
+
+    //menuBar fun
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.menu_guest, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId)
+        {
+           R.id.searchMapview -> {
+                var intent = Intent(this@GuestActivity, MapViewActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    //menuBar fun/
 }
 

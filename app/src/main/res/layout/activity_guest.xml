@@ -91,15 +91,4 @@
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/mapViewBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="5dp"
-        android:text="MapView"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
-        app:layout_constraintEnd_toStartOf="@+id/btnSearch"
-        app:layout_constraintStart_toEndOf="@+id/etSearch" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

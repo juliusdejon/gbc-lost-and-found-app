@@ -9,6 +9,8 @@ import android.widget.ImageView
 import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityViewItemBinding
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
+import java.io.File
 
 class ViewItemActivity : AppCompatActivity() {
 
@@ -47,25 +49,26 @@ class ViewItemActivity : AppCompatActivity() {
                     this.binding.itemReporter.setText("Contact: ${i.reporter}")
 
 
-
-                    // Assuming you have the downloadUrl from Firebase Storage
-                    val downloadUrl = "gs://georgebrowncollege.appspot.com/images/image_1702266088767.jpg"
-
-                    // Get the reference to your ImageView
-                    val image : ImageView= findViewById(R.id.typeImage)
-
                     // Use Firebase Storage API to load the image
-                    val storage = FirebaseStorage.getInstance()
-                    val storageReference = storage.getReferenceFromUrl(downloadUrl)
+                    val storageReference = FirebaseStorage.getInstance().getReference()
+//                    val storageReference = storage.getReferenceFromUrl(downloadUrl)
 
-                    // Load the image into ImageView
-                    storageReference.downloadUrl.addOnSuccessListener { uri ->
-                        // Use the uri to set the image in ImageView
-                        image.setImageURI(Uri.parse(uri.toString()))
-                    }.addOnFailureListener { exception ->
-                        // Handle the error
-                        Log.e("FirebaseStorage", "Error getting download URL", exception)
+                    var storageRef = storageReference.child("/images/${i.image}").downloadUrl
+
+                    storageRef.addOnSuccessListener { uri ->
+                        Picasso.get().load(uri.toString()).into(binding.typeImage)
                     }
+
+
+
+//                    // Load the image into ImageView
+//                    storageReference.storage.addOnSuccessListener { uri ->
+//                        // Use the uri to set the image in ImageView
+//                        image.setImageURI(uri)
+//                    }.addOnFailureListener { exception ->
+//                        // Handle the error
+//                        Log.e("FirebaseStorage", "Error getting download URL", exception)
+//                    }
 
 //                    if (i.type == "House") {
 //                        val imagename = "house"
