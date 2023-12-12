@@ -22,6 +22,8 @@ import androidx.core.content.ContextCompat.startActivity
 import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityMainBinding
 import com.example.lostandfound.ui.guest.GuestActivity
+import com.example.lostandfound.ui.owner.OwnerLoginActivity
+import com.example.lostandfound.ui.owner.OwnerSignupActivity
 import com.example.lostandfound.ui.reporter.ReporterLoginActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
@@ -44,10 +46,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         // open intent Guest Activity
         // binding.btnOpenMapView.setOnClickListener(this)
         binding.btnBrowser.setOnClickListener(this)
+
+        // Click listener for Owner
+        binding.btnOwner.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            R.id.btnOwner -> {
+                Log.d("sankarapp", "clicked on claim an item")
+                val intent = Intent(this@MainActivity, OwnerLoginActivity::class.java)
+                startActivity(intent)
+            }
+
             R.id.btnReport -> {
                 Log.d("APP", "onClick: ")
                 val intent = Intent(this@MainActivity, ReporterLoginActivity::class.java)
