@@ -42,6 +42,7 @@ class ReporterSignupActivity : AppCompatActivity(), OnClickListener {
                         contactNumber,
                         type
                     )
+                    finish()
                 }
             }
         }

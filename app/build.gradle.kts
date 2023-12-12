@@ -83,5 +83,7 @@ dependencies {
     // picasso
     implementation("com.squareup.picasso:picasso:2.71828")
 
+    // location
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
 }
