@@ -79,4 +79,9 @@ dependencies {
     // used for mapbox
     implementation("com.mapbox.maps:android:11.0.0")
 
+
+    // picasso
+    implementation("com.squareup.picasso:picasso:2.71828")
+
+
 }

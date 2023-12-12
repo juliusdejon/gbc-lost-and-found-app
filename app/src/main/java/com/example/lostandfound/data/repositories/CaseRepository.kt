@@ -30,7 +30,7 @@ class CaseRepository (private val context : Context) {
     //    var allFavourites: MutableLiveData<List<Country>> = MutableLiveData<List<Country>>()
     var allCases : MutableLiveData<List<Case>> = MutableLiveData<List<Case>>()
 
-    fun addCasetoDB(newCase: Case) {
+    fun addCase(newCase: Case) {
         try {
             val data: MutableMap<String, Any> = HashMap();
 
@@ -42,10 +42,9 @@ class CaseRepository (private val context : Context) {
             data[FIELD_ID] = newCase.id
             data[FIELD_ADDRESS] = newCase.address
 
-
             //for adding document to nested collection
             db.collection(COLLECTION_CASES)
-                .document(newCase.reporter)
+                .document(newCase.id)
                 .set(data)
                 .addOnSuccessListener { docRef ->
                     Log.d(TAG, "addCasetoDB: Successfully added to Database $docRef")
