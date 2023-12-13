@@ -1,5 +1,6 @@
 package com.example.lostandfound.ui.guest
 
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.util.Log
 import android.widget.ImageView
 import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityViewItemBinding
+import com.example.lostandfound.ui.owner.OwnerLoginActivity
 import com.google.firebase.storage.FirebaseStorage
 
 class ViewItemActivity : AppCompatActivity() {
@@ -71,6 +73,14 @@ class ViewItemActivity : AppCompatActivity() {
 
                     binding.itemContact.setOnClickListener{
                         Log.d("sankar","clicked on Contact to Claim")
+                        var intent = Intent(this@ViewItemActivity, OwnerLoginActivity::class.java)
+                         intent.putExtra("EXTRA_ID", itemID)
+                        startActivity(intent)
+
+
+                        //need to redirect to signin or signup and then pass along itemId
+
+
                     }
 
 //                    if (i.type == "House") {
