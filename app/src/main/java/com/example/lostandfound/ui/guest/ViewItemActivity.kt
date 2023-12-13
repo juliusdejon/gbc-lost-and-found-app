@@ -67,6 +67,12 @@ class ViewItemActivity : AppCompatActivity() {
                         Log.e("FirebaseStorage", "Error getting download URL", exception)
                     }
 
+                    // to do - button click listener for Contact to Claim
+
+                    binding.itemContact.setOnClickListener{
+                        Log.d("sankar","clicked on Contact to Claim")
+                    }
+
 //                    if (i.type == "House") {
 //                        val imagename = "house"
 //                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
