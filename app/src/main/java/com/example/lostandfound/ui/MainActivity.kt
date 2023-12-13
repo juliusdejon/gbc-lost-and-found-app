@@ -56,6 +56,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             R.id.btnBrowser -> {
                 val intent = Intent(this@MainActivity, GuestActivity::class.java)
+                val search = binding.etSearch.text.toString()
+                intent.putExtra("search", search)
                 startActivity(intent)
             }
         }
