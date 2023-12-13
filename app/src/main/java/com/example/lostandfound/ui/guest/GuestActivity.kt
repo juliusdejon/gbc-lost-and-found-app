@@ -43,6 +43,9 @@ class GuestActivity : AppCompatActivity() {
         //--------------MenuBar Init----------------------
 
         //--------------Recycler View----------------------
+        val search = intent.getStringExtra("search")
+        binding.etSearch.setText(search)
+
         caseAdapter = CaseAdapter(caseArrayList, { pos -> rowClicked(pos) })
         binding.rvProperties.layoutManager= LinearLayoutManager(this)
         binding.rvProperties.addItemDecoration(
