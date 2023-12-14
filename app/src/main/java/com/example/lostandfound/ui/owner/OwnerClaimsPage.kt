@@ -42,6 +42,8 @@ class OwnerClaimsPage:AppCompatActivity() {
         claimsRepository = ClaimsRepository(this)
         claimsRepository.retrieveAllClaims()
 
+        claimsAdapter = ClaimsAdapter(claimedList)
+
         claimsRepository.allClaims.observe(this,
             androidx.lifecycle.Observer { claimsList ->
                 if(claimsList != null){

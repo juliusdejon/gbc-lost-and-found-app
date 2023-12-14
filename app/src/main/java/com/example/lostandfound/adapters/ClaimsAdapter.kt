@@ -11,7 +11,7 @@ import com.example.lostandfound.models.Claims
 class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
     RecyclerView.Adapter<ClaimsAdapter.ViewHolder>() {
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val caseIdTextView: TextView = itemView.findViewById(R.id.textCaseId)
         private val emailIdTextView: TextView = itemView.findViewById(R.id.textEmailId)
         private val claimIdTextView: TextView = itemView.findViewById(R.id.textClaimId)
@@ -20,12 +20,6 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
 //            itemView.setOnClickListener {
 //                rowClickHandler(adapterPosition)
 //            }
-        }
-
-        fun bind(claim: Claims) {
-            caseIdTextView.text = "Case ID: ${claim.caseId}"
-            emailIdTextView.text = "Email: ${claim.emailId}"
-            claimIdTextView.text = "Claim ID: ${claim.id}"
         }
     }
 
@@ -36,7 +30,13 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val claim = claimsList[position]
-        holder.bind(claim)
+
+         val caseIdTextView: TextView = holder.itemView.findViewById(R.id.textCaseId)
+         val emailIdTextView: TextView = holder.itemView.findViewById(R.id.textEmailId)
+         val claimIdTextView: TextView = holder.itemView.findViewById(R.id.textClaimId)
+
+        emailIdTextView.text="Email ID: ${emailIdTextView}"
+        claimIdTextView.text="Email ID: ${claimIdTextView}"
     }
 
     override fun getItemCount(): Int {
