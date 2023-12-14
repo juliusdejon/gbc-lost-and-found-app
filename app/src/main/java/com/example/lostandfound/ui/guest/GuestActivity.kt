@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
@@ -38,7 +41,7 @@ class GuestActivity : AppCompatActivity() {
         //--------------MenuBar Init----------------------
 
         setSupportActionBar(this.binding.menuToolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         //--------------MenuBar Init----------------------
 
@@ -63,28 +66,48 @@ class GuestActivity : AppCompatActivity() {
         binding.btnSearch.setOnClickListener {
             val searchFromUI = binding.etSearch.text.toString()
             caseArrayList.clear()
-            caseRepository.retrieveCasesbyDescription(searchFromUI)
+            caseRepository.retrieveCasesbyName(searchFromUI)
         }
         //Search Button//
 
-        //Radio Filter Handler
-        binding.radioALL.setOnClickListener {
-            caseArrayList.clear()
-            caseRepository.retrieveAllCases()
+        //--------------Spinner----------------------
+        val categoryList:List<String> = listOf("All","Bag","Gadget","Clothes", "Other")
+
+        val categoriesAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this,
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item, categoryList
+        )
+
+        this.binding.guestSpinnerFilter.adapter = categoriesAdapter
+
+        binding.guestSpinnerFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int,
+                id: Long
+            ) {
+                val snack = Snackbar.make(
+                    binding.root,
+                    "Filtered Items : ${categoryList[position]}",
+                    Snackbar.LENGTH_SHORT
+                )
+                snack.show()
+
+                when (categoryList[position]) {
+                    "All" -> caseRepository.retrieveAllCases()
+                    "Bag" -> caseRepository.retrieveCasesbyType("Bag")
+                    "Gadget" -> caseRepository.retrieveCasesbyType("Gadget")
+                    "Clothes" -> caseRepository.retrieveCasesbyType("Clothes")
+                    "Other" -> caseRepository.retrieveCasesbyType("Other")
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
         }
 
-        binding.radioBag.setOnClickListener {
-            caseRepository.retrieveCasesbyType("Bag")
-        }
-
-        binding.radioGadget.setOnClickListener {
-            caseRepository.retrieveCasesbyType("Gadget")
-        }
-
-        binding.radioClothes.setOnClickListener {
-            caseRepository.retrieveCasesbyType("Clothes")
-        }
-        //Radio Filter Handler
+            //--------------Spinner----------------------
     }
 
     override fun onResume() {
@@ -115,7 +138,6 @@ class GuestActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menuInflater.inflate(R.menu.menu_guest, menu)
-
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -132,4 +154,5 @@ class GuestActivity : AppCompatActivity() {
     }
     //menuBar fun/
 }
+
 

@@ -1,5 +1,6 @@
 package com.example.lostandfound.ui.guest
 
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.widget.ImageView
 import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityViewItemBinding
 import com.google.firebase.storage.FirebaseStorage
+import com.mapbox.maps.plugin.annotation.annotations
 import com.squareup.picasso.Picasso
 import java.io.File
 
@@ -30,65 +32,39 @@ class ViewItemActivity : AppCompatActivity() {
             for (i in caseArrayList) {
                 if (itemID == i.id) {
 
-                    this.binding.itemID.setText("${i.id}")
-                    this.binding.itemAddress.setText("${i.address}")
-                    this.binding.itemType.setText("Type: ${i.type}")
-//                    this.binding.propertyCity.setText("${i.city}, ${i.postal}")
-//                    this.binding.propertySpecs.setText("Specifications: ${i.specs}")
-                    this.binding.itemDesciription.setText("${i.description}")
-                    if (i.isClaimed)
-                    {
-                        this.binding.itemIsClaimed.setText("CLAIMED")
-                        this.binding.itemIsClaimed.setTextColor(Color.rgb(1,100,32))
-                    }
-                    else
-                    {
-                        this.binding.itemIsClaimed.setText("UNCLAIMED")
-                        this.binding.itemIsClaimed.setTextColor(Color.rgb(255,0,0))
-                    }
-                    this.binding.itemReporter.setText("Contact: ${i.reporter}")
+                    this.binding.viewItemID.setText("Item ID: ${i.id}")
 
+                    this.binding.viewItemType.setText("Type: ${i.type}")
+
+                    this.binding.viewItemName.setText("${i.name}")
+
+                    this.binding.viewItemDesc.setText("${i.description}")
 
                     // Use Firebase Storage API to load the image
                     val storageReference = FirebaseStorage.getInstance().getReference()
 //                    val storageReference = storage.getReferenceFromUrl(downloadUrl)
 
                     var storageRef = storageReference.child("/images/${i.image}").downloadUrl
-
                     storageRef.addOnSuccessListener { uri ->
-                        Picasso.get().load(uri.toString()).into(binding.typeImage)
+                        Picasso.get().load(uri.toString()).into(binding.viewItemImage)
                     }
 
+                    this.binding.viewItemReporter.setText("Contact: ${i.reporter}")
+                    this.binding.viewItemAddress.setText("Found at: ${i.address}")
+                    this.binding.viewItemContactNum.setText("${i.contactNumber}")
 
+                    if (i.isClaimed)
+                    {
+                        this.binding.viewItemisClaimed.setText("CLAIMED")
+                        this.binding.viewItemisClaimed.setTextColor(Color.rgb(1,100,32))
+                        binding.viewItemContact.setEnabled(false)
+                    }
+                    else
+                    {
+                        this.binding.viewItemisClaimed.setText("UNCLAIMED")
+                        this.binding.viewItemisClaimed.setTextColor(Color.rgb(255,0,0))
+                    }
 
-//                    // Load the image into ImageView
-//                    storageReference.storage.addOnSuccessListener { uri ->
-//                        // Use the uri to set the image in ImageView
-//                        image.setImageURI(uri)
-//                    }.addOnFailureListener { exception ->
-//                        // Handle the error
-//                        Log.e("FirebaseStorage", "Error getting download URL", exception)
-//                    }
-
-//                    if (i.type == "House") {
-//                        val imagename = "house"
-//                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//                        this.binding.typeImage.setImageResource(res)
-//                    } else if (i.type == "Condo") {
-//                        val imagename = "condo"
-//                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//                        this.binding.typeImage.setImageResource(res)
-//
-//                    } else if (i.type == "Apartment") {
-//                        val imagename = "apartment"
-//                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//                        this.binding.typeImage.setImageResource(res)
-//
-//                    } else if (i.type == "Basement") {
-//                        val imagename = "basement"
-//                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//                        this.binding.typeImage.setImageResource(res)
-//                    }
                 }
             }
         }

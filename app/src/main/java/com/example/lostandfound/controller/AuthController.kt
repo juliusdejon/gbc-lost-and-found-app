@@ -64,4 +64,9 @@ class AuthController (var activity: Activity, var userRepository: UserRepository
             }
     }
 
+    fun signOut() {
+        val auth = FirebaseAuth.getInstance()
+        auth.signOut()
+    }
+
 }
