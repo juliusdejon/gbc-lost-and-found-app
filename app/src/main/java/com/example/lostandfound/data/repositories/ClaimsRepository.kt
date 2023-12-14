@@ -63,11 +63,16 @@ class ClaimsRepository(private val context : Context) {
                         val tempList: MutableList<Claims> = ArrayList<Claims>()
 
                         for (docChanges in result.documentChanges) {
-                            val cCaseId = docChanges.document.data[FIELD_CASEID] as String
-                            val cEmailId = docChanges.document.data[FIELD_EMAILID] as String
-                            val cId = docChanges.document.data[FIELD_ID] as String
+////                            val cCaseId = docChanges.document.data[FIELD_CASEID] as String
+//                            val cEmailId = docChanges.document.data[FIELD_EMAILID] as String
+//                            val cId = docChanges.document.data[FIELD_ID] as String
 
-                            val claim = Claims(cCaseId, cEmailId, cId)
+                            val cCaseId = docChanges.document.data[FIELD_CASEID]?.toString() ?: ""
+                            val cEmailId = docChanges.document.data[FIELD_EMAILID]?.toString() ?: ""
+                            val cId = docChanges.document.data[FIELD_ID]?.toString() ?: ""
+
+
+                            val claim = Claims("1", cEmailId, cId)
 
                             Log.d(TAG, "retrieveAllClaims: Current Document: $claim")
 

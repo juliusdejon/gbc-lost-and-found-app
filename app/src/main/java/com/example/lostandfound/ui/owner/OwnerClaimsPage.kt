@@ -1,11 +1,12 @@
 package com.example.lostandfound.ui.owner
 
-import ClaimsAdapter
+
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lostandfound.adapters.ClaimsAdapter
 import com.example.lostandfound.data.repositories.ClaimsRepository
 import com.example.lostandfound.databinding.ActivityOwnerClaimsBinding
 import com.example.lostandfound.databinding.ActivityOwnerHomePageBinding
