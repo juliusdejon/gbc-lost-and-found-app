@@ -86,24 +86,15 @@
             android:text="Reporter"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/itemIsClaimed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:text="CLAIMED"
-            android:textSize="24sp"
-            android:textStyle="bold" />
 
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/itemContact"
+        android:id="@+id/btnViewClaims"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Contact to Claim" />
+        android:text="View All Claims" />
 
 </LinearLayout>
