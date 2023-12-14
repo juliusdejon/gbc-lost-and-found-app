@@ -1,49 +1,55 @@
 package com.example.lostandfound.ui.owner
 
+import ClaimsAdapter
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lostandfound.data.repositories.ClaimsRepository
+import com.example.lostandfound.databinding.ActivityOwnerClaimsBinding
 import com.example.lostandfound.databinding.ActivityOwnerHomePageBinding
 import com.example.lostandfound.databinding.ActivityViewItemBinding
+import com.example.lostandfound.models.Case
+import com.example.lostandfound.models.Claims
 import com.example.lostandfound.ui.guest.caseArrayList
 
 class OwnerClaimsPage:AppCompatActivity() {
 
-    private lateinit var binding: ActivityViewItemBinding
+    private lateinit var binding: ActivityOwnerClaimsBinding
     private var itemID : String? = null
+    private lateinit var claimsAdapter: ClaimsAdapter
+    private lateinit var claimsRepository: ClaimsRepository
+
+    var claimedList: MutableList<Claims> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("sankar","here inside Owner claims")
-        binding = ActivityViewItemBinding.inflate(layoutInflater)
+        binding = ActivityOwnerClaimsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         itemID = intent.getStringExtra("EXTRA_ID")
 
-        //Leo
-        if (itemID != "") {
-            for (i in caseArrayList) {
-                if (itemID == i.id) {
+        // Initialize the RecyclerView and ClaimsAdapter
+        val recyclerView = binding.rvViewClaims
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        claimsAdapter = ClaimsAdapter(mutableListOf())
+        recyclerView.adapter = claimsAdapter
 
-//                    this.binding.itemID.setText("${i.id}")
-//                    this.binding.itemAddress.setText("${i.address}")
-//                    this.binding.itemType.setText("Type: ${i.type}")
-////                    this.binding.propertyCity.setText("${i.city}, ${i.postal}")
-////                    this.binding.propertySpecs.setText("Specifications: ${i.specs}")
-//                    this.binding.itemDesciription.setText("${i.description}")
-//                    if (i.isClaimed) {
-//                        this.binding.itemIsClaimed.setText("CLAIMED")
-//                        this.binding.itemIsClaimed.setTextColor(Color.rgb(1, 100, 32))
-//                    } else {
-//                        this.binding.itemIsClaimed.setText("UNCLAIMED")
-//                        this.binding.itemIsClaimed.setTextColor(Color.rgb(255, 0, 0))
-//                    }
-//                    this.binding.itemReporter.setText("Contact: ${i.reporter}")
+        // Initialize ClaimsRepository and start data retrieval
+        claimsRepository = ClaimsRepository(this)
+        claimsRepository.retrieveAllClaims()
 
-
+        claimsRepository.allClaims.observe(this,
+            androidx.lifecycle.Observer { claimsList ->
+                if(claimsList != null){
+                    claimedList.clear()
+                    Log.d("sankar", "onResume: $claimsList")
+                    claimedList.addAll(claimsList)
+                    claimsAdapter.notifyDataSetChanged()
                 }
-            }
-                }
+            })
+
     }
 }

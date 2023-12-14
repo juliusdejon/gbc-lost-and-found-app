@@ -21,6 +21,7 @@ data class Case(
 
 object DataHolder {
     var case: Case? = null
+    var claims: Claims? = null
 }
 
 

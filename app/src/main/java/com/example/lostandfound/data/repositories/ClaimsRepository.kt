@@ -23,7 +23,7 @@ class ClaimsRepository(private val context : Context) {
     private val FIELD_ID = "id"
 
     var allClaims : MutableLiveData<List<Claims>> = MutableLiveData<List<Claims>>()
-
+    var allCases : MutableLiveData<List<Case>> = MutableLiveData<List<Case>>()
     fun addClaimsToDB(newClaims: Claims){
         // to be implemented
         try{
@@ -46,6 +46,8 @@ class ClaimsRepository(private val context : Context) {
             Log.e(TAG, "addCasetoDB: Couldn't perform insert on Claims collection due to exception $ex", )
         }
     }
+
+
     fun retrieveAllClaims() {
         try {
             db.collection(COLLECTION_CLAIMS)

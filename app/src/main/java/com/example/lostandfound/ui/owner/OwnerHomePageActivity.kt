@@ -40,12 +40,12 @@ class OwnerHomePageActivity:AppCompatActivity() {
         return when (item.itemId){
             R.id.mi_showAllClaims -> {
                 val intent = Intent(this, OwnerClaimsPage::class.java)
+                intent.putExtra("EXTRA_ID", itemID)
                 startActivity(intent)
                 return true
             }
             R.id.mi_Logout -> {
                 val intent = Intent(this, MainActivity::class.java)
-
                 startActivity(intent)
                 return true
 
