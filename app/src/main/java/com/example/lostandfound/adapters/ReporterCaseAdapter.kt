@@ -50,7 +50,7 @@ class ReporterCaseAdapter (private val caseList:MutableList<Case>,
         val tvLine6 = holder.itemView.findViewById<TextView>(R.id.rowLayoutType)
         val tvLine7 = holder.itemView.findViewById<TextView>(R.id.rowLayoutIsClaimed)
 //
-        tvLine1.setText("ID: ${currCountry.id}")
+//        tvLine1.setText("ID: ${currCountry.id}")
 
         //Address
 //        tvLine2.setText("${currCountry.address}")
@@ -76,12 +76,13 @@ class ReporterCaseAdapter (private val caseList:MutableList<Case>,
         if (currCountry.isClaimed)
         {
             tvLine7.setText("CLAIMED")
-            tvLine7.setTextColor(Color.rgb(1,100,32))
+            tvLine7.setBackgroundResource(R.drawable.guest_claimed_button)
         }
         else
         {
-            tvLine7.setText("NOT CLAIMED")
-            tvLine7.setTextColor(Color.rgb(255,0,0))
+            tvLine7.setText("UNCLAIMED")
+            tvLine7.setBackgroundResource(R.drawable.guest_unclaimed_button)
+
         }
 
     }

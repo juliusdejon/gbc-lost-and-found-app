@@ -46,7 +46,7 @@ class GuestActivity : AppCompatActivity() {
         //--------------MenuBar Init----------------------
 
         //--------------Recycler View----------------------
-        val search = intent.getStringExtra("search")
+        val search = intent.getStringExtra("search").toString()
         binding.etSearch.setText(search)
 
         caseAdapter = CaseAdapter(caseArrayList, { pos -> rowClicked(pos) })
@@ -68,8 +68,12 @@ class GuestActivity : AppCompatActivity() {
         //Search Button
         binding.btnSearch.setOnClickListener {
             val searchFromUI = binding.etSearch.text.toString()
-            caseArrayList.clear()
-            caseRepository.retrieveCasesbyName(searchFromUI)
+            if(searchFromUI.isNotEmpty()) {
+                caseArrayList.clear()
+                caseRepository.retrieveCasesbyName(searchFromUI)
+            } else {
+                caseRepository.retrieveAllCases()
+            }
         }
         //Search Button//
 
@@ -116,8 +120,6 @@ class GuestActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        caseRepository.retrieveAllCases()
-
         caseRepository.allCases.observe(this,
             androidx.lifecycle.Observer { caseList ->
             if(caseList != null){
