@@ -97,5 +97,60 @@ class ClaimsRepository(private val context : Context) {
         }
     }
 
+    fun retrieveClaimsByEmail(emailIduser: String){
+        try {
+            db.collection(COLLECTION_CLAIMS)
+                .addSnapshotListener(EventListener { result, error ->
+                    if (error != null) {
+                        Log.e(TAG, "retrieveAllClaims: Listening to Claims collection failed due to error: $error")
+                        return@EventListener
+                    }
+
+                    if (result != null) {
+                        Log.d(TAG, "retrieveAllClaims: Number of Documents retrieved: ${result.size()}")
+
+                        val tempList: MutableList<Claims> = ArrayList<Claims>()
+
+                        for (docChanges in result.documentChanges) {
+////                            val cCaseId = docChanges.document.data[FIELD_CASEID] as String
+//                            val cEmailId = docChanges.document.data[FIELD_EMAILID] as String
+//                            val cId = docChanges.document.data[FIELD_ID] as String
+
+                            val cCaseId = docChanges.document.data[FIELD_CASEID]?.toString() ?: ""
+                            val cEmailId = docChanges.document.data[FIELD_EMAILID]?.toString() ?: ""
+                            val cId = docChanges.document.data[FIELD_ID]?.toString() ?: ""
+
+
+                            val claim = Claims("1", cEmailId, cId)
+
+                            Log.d(TAG, "retrieveAllClaims: Current Document: $claim")
+                            Log.d("sankar",emailIduser)
+                            Log.d("sankar",cEmailId)
+
+                            when (docChanges.type) {
+                                DocumentChange.Type.ADDED -> {
+                                    if(emailIduser == cEmailId)
+                                    {
+                                        tempList.add(claim)
+                                    }
+
+                                }
+                                DocumentChange.Type.MODIFIED -> {}
+                                DocumentChange.Type.REMOVED -> {}
+                            }
+                        }
+
+                        // Update the value in allClaims
+                        allClaims.postValue(tempList)
+                    } else {
+                        Log.d(TAG, "retrieveAllClaims: No data in the result after retrieving")
+                    }
+                })
+
+        } catch (ex: java.lang.Exception) {
+            Log.e(TAG, "retrieveAllClaims: Unable to retrieve all claims: $ex")
+        }
+    }
+
     // You can add additional functions for managing claims as needed.
 }

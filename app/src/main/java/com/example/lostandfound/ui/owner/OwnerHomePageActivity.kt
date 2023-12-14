@@ -40,7 +40,12 @@ class OwnerHomePageActivity:AppCompatActivity() {
         return when (item.itemId){
             R.id.mi_showAllClaims -> {
                 val intent = Intent(this, OwnerClaimsPage::class.java)
+                itemID = intent.getStringExtra("EXTRA_ID")
+                emailID = intent.getStringExtra("EMAIL_ID")
                 intent.putExtra("EXTRA_ID", itemID)
+                intent.putExtra("EMAIL_ID", emailID)
+                Log.d("sankar","here view claims button click from menu")
+                Log.d("sankar","${emailID}")
                 startActivity(intent)
                 return true
             }
@@ -99,6 +104,9 @@ class OwnerHomePageActivity:AppCompatActivity() {
                     binding.btnViewClaims.setOnClickListener{
                         val intent = Intent(this@OwnerHomePageActivity, OwnerClaimsPage::class.java)
                         intent.putExtra("EXTRA_ID", itemID)
+                        intent.putExtra("EMAIL_ID", emailID)
+                        Log.d("sankar","here view claims button click from menu")
+                        Log.d("sankar","${emailID}")
                         startActivity(intent)
                     }
                 }

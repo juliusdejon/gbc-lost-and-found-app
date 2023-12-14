@@ -5,8 +5,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lostandfound.adapters.ClaimsAdapter
+import com.example.lostandfound.adapters.ReporterCaseAdapter
 import com.example.lostandfound.data.repositories.ClaimsRepository
 import com.example.lostandfound.databinding.ActivityOwnerClaimsBinding
 import com.example.lostandfound.databinding.ActivityOwnerHomePageBinding
@@ -19,6 +21,7 @@ class OwnerClaimsPage:AppCompatActivity() {
 
     private lateinit var binding: ActivityOwnerClaimsBinding
     private var itemID : String? = null
+    private var emailID : String? = null
     private lateinit var claimsAdapter: ClaimsAdapter
     private lateinit var claimsRepository: ClaimsRepository
 
@@ -31,28 +34,54 @@ class OwnerClaimsPage:AppCompatActivity() {
         setContentView(binding.root)
 
         itemID = intent.getStringExtra("EXTRA_ID")
+        emailID = intent.getStringExtra("EMAIL_ID")
 
-        // Initialize the RecyclerView and ClaimsAdapter
-        val recyclerView = binding.rvViewClaims
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        claimsAdapter = ClaimsAdapter(mutableListOf())
-        recyclerView.adapter = claimsAdapter
+
+        // Set up Recycler View
+        claimsAdapter = ClaimsAdapter(claimedList)
+        binding.rvViewClaims.layoutManager= LinearLayoutManager(this)
+        binding.rvViewClaims.addItemDecoration(
+            DividerItemDecoration(
+                this.applicationContext,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         // Initialize ClaimsRepository and start data retrieval
-        claimsRepository = ClaimsRepository(this)
-        claimsRepository.retrieveAllClaims()
+        claimsRepository = ClaimsRepository(applicationContext)
+//        claimsRepository.retrieveAllClaims()
+        Log.d("sankar","trying to retrieve using ${emailID}")
+        claimsRepository.retrieveClaimsByEmail(emailID.toString())
 
-        claimsAdapter = ClaimsAdapter(claimedList)
+//        claimsAdapter = ClaimsAdapter(claimedList)
 
         claimsRepository.allClaims.observe(this,
             androidx.lifecycle.Observer { claimsList ->
                 if(claimsList != null){
-                    claimedList.clear()
-                    Log.d("sankar", "onResume: $claimsList")
-                    claimedList.addAll(claimsList)
+//                    claimedList.clear()
+                    Log.d("sankar", "by email: onStart: $claimsList")
+//                    claimedList.addAll(claimsList)
+
+                    claimsAdapter = ClaimsAdapter(claimsList.toMutableList())
                     claimsAdapter.notifyDataSetChanged()
                 }
             })
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        claimsRepository.allClaims.observe(this,
+            androidx.lifecycle.Observer { claimsList ->
+                if(claimsList != null){
+//                    claimedList.clear()
+                    Log.d("sankar", "onStart: $claimsList")
+//                    claimedList.addAll(claimsList)
+
+                    claimsAdapter = ClaimsAdapter(claimsList.toMutableList())
+                    claimsAdapter.notifyDataSetChanged()
+                }
+            })
     }
 }
