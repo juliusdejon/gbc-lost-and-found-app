@@ -38,6 +38,7 @@ class GuestActivity : AppCompatActivity() {
         binding = ActivityGuestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //--------------MenuBar Init----------------------
 
         setSupportActionBar(this.binding.menuToolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -73,7 +74,7 @@ class GuestActivity : AppCompatActivity() {
         //Search Button//
 
         //--------------Spinner----------------------
-        val categoryList:List<String> = listOf("All","Bag","Gadget","Clothes", "Other")
+        val categoryList:List<String> = listOf("All","Bag","Gadget","Apparel", "Accessories", "Other")
 
         val categoriesAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this,
             com.google.android.material.R.layout.support_simple_spinner_dropdown_item, categoryList
@@ -87,18 +88,19 @@ class GuestActivity : AppCompatActivity() {
                 view: View, position: Int,
                 id: Long
             ) {
-                val snack = Snackbar.make(
-                    binding.root,
-                    "Filtered Items : ${categoryList[position]}",
-                    Snackbar.LENGTH_SHORT
-                )
-                snack.show()
+//                val snack = Snackbar.make(
+//                    binding.root,
+//                    "Filtered Items : ${categoryList[position]}",
+//                    Snackbar.LENGTH_SHORT
+//                )
+//                snack.show()
 
                 when (categoryList[position]) {
                     "All" -> caseRepository.retrieveAllCases()
                     "Bag" -> caseRepository.retrieveCasesbyType("Bag")
                     "Gadget" -> caseRepository.retrieveCasesbyType("Gadget")
-                    "Clothes" -> caseRepository.retrieveCasesbyType("Clothes")
+                    "Apparel" -> caseRepository.retrieveCasesbyType("Apparel")
+                    "Accessories" -> caseRepository.retrieveCasesbyType("Accessories")
                     "Other" -> caseRepository.retrieveCasesbyType("Other")
                 }
 

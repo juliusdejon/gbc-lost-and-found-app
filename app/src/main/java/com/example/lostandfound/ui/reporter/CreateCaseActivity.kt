@@ -36,7 +36,7 @@ class CreateCaseActivity : AppCompatActivity() {
         authController = AuthController(this, this.userRepository)
         locationController = LocationController(this)
 
-        val categoryList:List<String> = listOf("Bag","Gadget","Clothes")
+        val categoryList:List<String> = listOf("Bag","Gadget","Apparel", "Accessories", "Other")
 
         val categoriesAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this,
             com.google.android.material.R.layout.support_simple_spinner_dropdown_item, categoryList

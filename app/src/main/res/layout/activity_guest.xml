@@ -43,8 +43,8 @@
 
     <Button
         android:id="@+id/btnSearch"
-        android:layout_width="113dp"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
         android:backgroundTint="#FF54838E"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="@+id/guestSpinnerFilter"
@@ -54,8 +54,8 @@
 
     <Spinner
         android:id="@+id/guestSpinnerFilter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="99dp"
+        android:layout_height="22dp"
         app:layout_constraintBottom_toBottomOf="@+id/etSearch"
         app:layout_constraintEnd_toStartOf="@+id/btnSearch"
         app:layout_constraintStart_toEndOf="@+id/etSearch"

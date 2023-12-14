@@ -32,7 +32,7 @@ class ViewItemActivity : AppCompatActivity() {
             for (i in caseArrayList) {
                 if (itemID == i.id) {
 
-                    this.binding.viewItemID.setText("Item ID: ${i.id}")
+//                    this.binding.viewItemID.setText("Item ID: ${i.id}")
 
                     this.binding.viewItemType.setText("Type: ${i.type}")
 
@@ -55,14 +55,15 @@ class ViewItemActivity : AppCompatActivity() {
 
                     if (i.isClaimed)
                     {
-                        this.binding.viewItemisClaimed.setText("CLAIMED")
-                        this.binding.viewItemisClaimed.setTextColor(Color.rgb(1,100,32))
+                        this.binding.viewItemisClaimed.setText("UNAVAILABLE")
+
+                        this.binding.viewItemisClaimed.setTextColor(Color.rgb(255,0,0))
                         binding.viewItemContact.setEnabled(false)
                     }
                     else
                     {
-                        this.binding.viewItemisClaimed.setText("UNCLAIMED")
-                        this.binding.viewItemisClaimed.setTextColor(Color.rgb(255,0,0))
+                        this.binding.viewItemisClaimed.setText("AVAILABLE")
+                        this.binding.viewItemisClaimed.setTextColor(Color.rgb(1,100,32))
                     }
 
                 }

@@ -1,6 +1,5 @@
 package com.example.lostandfound.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,14 +39,12 @@ class CaseAdapter (private val caseList:MutableList<Case>,
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val currCountry: Case = caseList.get(position)
 
-        val tvLine1 = holder.itemView.findViewById<TextView>(R.id.rowLayoutID)
         val tvLine3 = holder.itemView.findViewById<TextView>(R.id.rowLayoutName)
         val tvLine4 = holder.itemView.findViewById<ImageView>(R.id.rowLayoutImage)
         val tvLine5 = holder.itemView.findViewById<TextView>(R.id.rowLayoutReporter)
         val tvLine6 = holder.itemView.findViewById<TextView>(R.id.rowLayoutType)
         val tvLine7 = holder.itemView.findViewById<TextView>(R.id.rowLayoutIsClaimed)
 //
-        tvLine1.setText("ID: ${currCountry.id}")
 
         tvLine3.setText("${currCountry.name}")
 
@@ -66,13 +63,14 @@ class CaseAdapter (private val caseList:MutableList<Case>,
 
         if (currCountry.isClaimed)
         {
-            tvLine7.setText("CLAIMED")
-            tvLine7.setTextColor(Color.rgb(1,100,32))
+            tvLine7.setText("UNAVAILABLE")
+            tvLine7.setBackgroundResource(R.drawable.guest_unclaimed_button)
+
         }
         else
         {
-            tvLine7.setText("NOT CLAIMED")
-            tvLine7.setTextColor(Color.rgb(255,0,0))
+            tvLine7.setText("AVAILABLE")
+            tvLine7.setBackgroundResource(R.drawable.guest_claimed_button)
         }
 
     }
