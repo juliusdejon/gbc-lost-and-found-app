@@ -5,6 +5,11 @@ import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
@@ -33,6 +38,13 @@ class GuestActivity : AppCompatActivity() {
         binding = ActivityGuestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        setSupportActionBar(this.binding.menuToolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        //--------------MenuBar Init----------------------
+
+        //--------------Recycler View----------------------
         val search = intent.getStringExtra("search")
         binding.etSearch.setText(search)
 
@@ -44,6 +56,7 @@ class GuestActivity : AppCompatActivity() {
                 DividerItemDecoration.VERTICAL
             )
         )
+        //--------------Recycler View----------------------
 
         this.binding.rvProperties.adapter = caseAdapter
 
@@ -51,40 +64,52 @@ class GuestActivity : AppCompatActivity() {
 
 
 
-//Search Button
+        //Search Button
         binding.btnSearch.setOnClickListener {
             val searchFromUI = binding.etSearch.text.toString()
             caseArrayList.clear()
-            caseRepository.retrieveCasesbyDescription(searchFromUI)
+            caseRepository.retrieveCasesbyName(searchFromUI)
         }
         //Search Button//
 
-        //Radio Filter Handler
-        binding.radioALL.setOnClickListener {
-            caseArrayList.clear()
-            caseRepository.retrieveAllCases()
+        //--------------Spinner----------------------
+        val categoryList:List<String> = listOf("All","Bag","Gadget","Clothes", "Other")
+
+        val categoriesAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this,
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item, categoryList
+        )
+
+        this.binding.guestSpinnerFilter.adapter = categoriesAdapter
+
+        binding.guestSpinnerFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int,
+                id: Long
+            ) {
+                val snack = Snackbar.make(
+                    binding.root,
+                    "Filtered Items : ${categoryList[position]}",
+                    Snackbar.LENGTH_SHORT
+                )
+                snack.show()
+
+                when (categoryList[position]) {
+                    "All" -> caseRepository.retrieveAllCases()
+                    "Bag" -> caseRepository.retrieveCasesbyType("Bag")
+                    "Gadget" -> caseRepository.retrieveCasesbyType("Gadget")
+                    "Clothes" -> caseRepository.retrieveCasesbyType("Clothes")
+                    "Other" -> caseRepository.retrieveCasesbyType("Other")
+                }
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
         }
 
-        binding.radioBag.setOnClickListener {
-            caseRepository.retrieveCasesbyType("Bag")
-        }
-
-        binding.radioGadget.setOnClickListener {
-            caseRepository.retrieveCasesbyType("Gadget")
-        }
-
-        binding.radioClothes.setOnClickListener {
-            caseRepository.retrieveCasesbyType("Clothes")
-        }
-        //Radio Filter Handler
-
-
-        binding.mapViewBtn.setOnClickListener {
-            var intent = Intent(this@GuestActivity, MapViewActivity::class.java)
-//            intent.putExtra("EXTRA_ID", searchedProperties[position].id)
-            startActivity(intent)
-        }
-
+            //--------------Spinner----------------------
     }
 
     override fun onResume() {
@@ -110,5 +135,26 @@ class GuestActivity : AppCompatActivity() {
 //            val snackbar = Snackbar.make(binding.root, "Clicked Row : $position, ${caseArrayList[position].description}", Snackbar.LENGTH_LONG).show()
         }
     }
+
+    //menuBar fun
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.menu_guest, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId)
+        {
+           R.id.searchMapview -> {
+                var intent = Intent(this@GuestActivity, MapViewActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    //menuBar fun/
 }
+
 
