@@ -75,9 +75,6 @@ class OwnerClaimsPage:AppCompatActivity() {
         binding.textViewEmail.setText("Currently logged in as: ${emailID}")
         binding.textViewUserName.setText("User type: Owner")
 
-
-
-
         // Set up Recycler View
         claimsAdapter = ClaimsAdapter(claimedList)
         binding.rvViewClaims.adapter = claimsAdapter
@@ -91,7 +88,7 @@ class OwnerClaimsPage:AppCompatActivity() {
 
         // Initialize ClaimsRepository and start data retrieval
         claimsRepository = ClaimsRepository(applicationContext)
-//        claimsRepository.retrieveAllClaims()
+
         Log.d("sankar","trying to retrieve using ${emailID}")
         claimsRepository.retrieveClaimsByEmail(emailID.toString())
 

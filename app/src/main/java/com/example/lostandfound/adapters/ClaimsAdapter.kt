@@ -11,11 +11,14 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lostandfound.R
+import com.example.lostandfound.data.repositories.ClaimsRepository
 import com.example.lostandfound.models.Claims
 
 
 class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
     RecyclerView.Adapter<ClaimsAdapter.ViewHolder>() {
+
+    private lateinit var claimsRepository: ClaimsRepository
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
@@ -40,6 +43,7 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
          val addressTextView: TextView = viewHolder.itemView.findViewById(R.id.textAddress)
          val callButton: Button = viewHolder.itemView.findViewById<Button>(R.id.buttonCall)
          val removeButton: Button = viewHolder.itemView.findViewById(R.id.buttonRemove)
+         val deleteButton: Button = viewHolder.itemView.findViewById(R.id.buttonDelete)
 
         Log.d("sankar","here inside onBindViewHolder of ClaimsAdapter")
 
@@ -65,6 +69,12 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
             viewHolder.itemView.context.startActivity(mapIntent)
+        }
+
+        deleteButton.setOnClickListener(){
+            Log.d("sankar","here inside delete listener")
+            claimsRepository = ClaimsRepository(viewHolder.itemView.context)
+            claimsRepository.deleteClaim(claim.id)
         }
 
 

@@ -163,7 +163,22 @@ class ClaimsRepository(private val context : Context) {
         }
     }
 
-    fun deleteClaim(){
+    fun deleteClaim(id: String){
         // to be implemented
+        Log.d("sankar","id:${id}")
+        try{
+            db.collection(COLLECTION_CLAIMS)
+                .document(id)
+                .delete()
+                .addOnSuccessListener { docRef ->
+                    Log.d(TAG, "removeCase: Document deleted successfully : $docRef")
+                }
+                .addOnFailureListener { ex ->
+                    Log.e(TAG, "removeCase: Failed to delete document : $ex", )
+                }
+        }
+        catch (ex : Exception){
+            Log.e(TAG, "removeCase: Unable to delete country due to exception : $ex", )
+        }
     }
 }
