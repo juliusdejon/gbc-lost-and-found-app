@@ -39,7 +39,7 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
         Log.d("sankar","here inside onBindViewHolder of ClaimsAdapter")
 
         emailIdTextView.text="Email ID: ${claim.emailId}"
-        claimIdTextView.text="Email ID: ${claim.caseId}"
+        claimIdTextView.text="Email ID: ${claim.id}"
     }
 
     override fun getItemCount(): Int {

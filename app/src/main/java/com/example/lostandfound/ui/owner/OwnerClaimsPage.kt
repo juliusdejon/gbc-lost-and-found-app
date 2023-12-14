@@ -39,6 +39,7 @@ class OwnerClaimsPage:AppCompatActivity() {
 
         // Set up Recycler View
         claimsAdapter = ClaimsAdapter(claimedList)
+        binding.rvViewClaims.adapter = claimsAdapter
         binding.rvViewClaims.layoutManager= LinearLayoutManager(this)
         binding.rvViewClaims.addItemDecoration(
             DividerItemDecoration(
@@ -55,17 +56,17 @@ class OwnerClaimsPage:AppCompatActivity() {
 
 //        claimsAdapter = ClaimsAdapter(claimedList)
 
-        claimsRepository.allClaims.observe(this,
-            androidx.lifecycle.Observer { claimsList ->
-                if(claimsList != null){
-//                    claimedList.clear()
-                    Log.d("sankar", "by email: onStart: $claimsList")
-//                    claimedList.addAll(claimsList)
-
-                    claimsAdapter = ClaimsAdapter(claimsList.toMutableList())
-                    claimsAdapter.notifyDataSetChanged()
-                }
-            })
+//        claimsRepository.allClaims.observe(this,
+//            androidx.lifecycle.Observer { claimsList ->
+//                if(claimsList != null){
+////                    claimedList.clear()
+//                    Log.d("sankar", "by email: onStart: $claimsList")
+////                    claimedList.addAll(claimsList)
+//
+//                    claimsAdapter = ClaimsAdapter(claimsList.toMutableList())
+//                    claimsAdapter.notifyDataSetChanged()
+//                }
+//            })
 
     }
 
@@ -75,11 +76,11 @@ class OwnerClaimsPage:AppCompatActivity() {
         claimsRepository.allClaims.observe(this,
             androidx.lifecycle.Observer { claimsList ->
                 if(claimsList != null){
-//                    claimedList.clear()
+                    claimedList.clear()
                     Log.d("sankar", "onStart: $claimsList")
-//                    claimedList.addAll(claimsList)
+                    claimedList.addAll(claimsList)
 
-                    claimsAdapter = ClaimsAdapter(claimsList.toMutableList())
+//                    claimsAdapter = ClaimsAdapter(claimsList.toMutableList())
                     claimsAdapter.notifyDataSetChanged()
                 }
             })
