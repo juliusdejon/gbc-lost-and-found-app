@@ -3,7 +3,7 @@
     <item
         android:id="@+id/mi_showAllClaims"
         android:orderInCategory="100"
-        android:title="Show all Claims" />
+        android:title="View All Claims" />
     <item
         android:id="@+id/mi_Logout"
         android:orderInCategory="100"

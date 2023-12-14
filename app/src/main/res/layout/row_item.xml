@@ -7,25 +7,25 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textCaseId"
+        android:id="@+id/textDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Case ID: "
+        android:text="Description: "
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textEmailId"
+        android:id="@+id/textAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email: "
+        android:text="Address: "
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textClaimId"
+        android:id="@+id/textContactNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Claim ID: "
+        android:text="Contact Number: "
         android:textSize="16sp" />
 
 </LinearLayout>

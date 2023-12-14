@@ -32,14 +32,15 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val claim = claimsList[position]
 
-         val caseIdTextView: TextView = viewHolder.itemView.findViewById(R.id.textCaseId)
-         val emailIdTextView: TextView = viewHolder.itemView.findViewById(R.id.textEmailId)
-         val claimIdTextView: TextView = viewHolder.itemView.findViewById(R.id.textClaimId)
+         val descriptionTextView: TextView = viewHolder.itemView.findViewById(R.id.textDescription)
+         val contactNumberTextView: TextView = viewHolder.itemView.findViewById(R.id.textContactNumber)
+         val addressTextView: TextView = viewHolder.itemView.findViewById(R.id.textAddress)
 
         Log.d("sankar","here inside onBindViewHolder of ClaimsAdapter")
 
-        emailIdTextView.text="Email ID: ${claim.emailId}"
-        claimIdTextView.text="Email ID: ${claim.id}"
+        descriptionTextView.text="Description: ${claim.description}"
+        contactNumberTextView.text="Address: ${claim.contactNumber}"
+        addressTextView.text="Contact Number: ${claim.address}"
     }
 
     override fun getItemCount(): Int {

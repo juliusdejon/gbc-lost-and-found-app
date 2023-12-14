@@ -42,9 +42,7 @@ class OwnerHomePageActivity:AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.mi_showAllClaims -> {
-                val intent = Intent(this, OwnerClaimsPage::class.java)
-                itemID = intent.getStringExtra("EXTRA_ID")
-                emailID = intent.getStringExtra("EMAIL_ID")
+                val intent = Intent(this@OwnerHomePageActivity, OwnerClaimsPage::class.java)
                 intent.putExtra("EXTRA_ID", itemID)
                 intent.putExtra("EMAIL_ID", emailID)
                 Log.d("sankar","here view claims button click from menu")

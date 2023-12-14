@@ -136,8 +136,7 @@ class ClaimsRepository(private val context : Context) {
                             val claim = Claims("1", cEmailId, cId,cDescription,cAddress,cContactNumber)
 
                             Log.d(TAG, "retrieveAllClaims: Current Document: $claim")
-                            Log.d("sankar",emailIduser)
-                            Log.d("sankar",cEmailId)
+
 
                             when (docChanges.type) {
                                 DocumentChange.Type.ADDED -> {
