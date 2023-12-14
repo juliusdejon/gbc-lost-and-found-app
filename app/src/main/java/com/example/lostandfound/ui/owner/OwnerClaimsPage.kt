@@ -76,6 +76,8 @@ class OwnerClaimsPage:AppCompatActivity() {
         binding.textViewUserName.setText("User type: Owner")
 
 
+
+
         // Set up Recycler View
         claimsAdapter = ClaimsAdapter(claimedList)
         binding.rvViewClaims.adapter = claimsAdapter

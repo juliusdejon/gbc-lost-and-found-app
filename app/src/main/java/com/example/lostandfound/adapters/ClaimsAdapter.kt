@@ -1,15 +1,18 @@
 package com.example.lostandfound.adapters
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lostandfound.R
 import com.example.lostandfound.models.Claims
-import com.google.android.play.integrity.internal.c
-import kotlinx.coroutines.NonDisposableHandle.parent
+
 
 class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
     RecyclerView.Adapter<ClaimsAdapter.ViewHolder>() {
@@ -35,15 +38,29 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
          val descriptionTextView: TextView = viewHolder.itemView.findViewById(R.id.textDescription)
          val contactNumberTextView: TextView = viewHolder.itemView.findViewById(R.id.textContactNumber)
          val addressTextView: TextView = viewHolder.itemView.findViewById(R.id.textAddress)
+         val callButton: Button = viewHolder.itemView.findViewById<Button>(R.id.buttonCall)
 
         Log.d("sankar","here inside onBindViewHolder of ClaimsAdapter")
 
         descriptionTextView.text="Description: ${claim.description}"
         contactNumberTextView.text="Address: ${claim.contactNumber}"
         addressTextView.text="Contact Number: ${claim.address}"
+
+        callButton.setOnClickListener(){
+            Log.d("sankar","call button clicked")
+            // call dialer function
+
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:${claim.contactNumber}")
+            viewHolder.itemView.context.startActivity(intent)
+
+        }
+
+
     }
 
     override fun getItemCount(): Int {
         return claimsList.size
     }
+
 }

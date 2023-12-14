@@ -10,7 +10,7 @@
         android:id="@+id/menu_toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#154854"
+        android:background="#4CAF50"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -35,12 +35,13 @@
         android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="Email: john.doe@example.com"
         app:layout_constraintTop_toBottomOf="@id/textViewUserName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"/>
+        android:textSize="25sp"/>
 
     <!-- Display Claims -->
     <androidx.recyclerview.widget.RecyclerView
