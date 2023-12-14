@@ -344,11 +344,11 @@ class CaseRepository (private val context : Context) {
         }
     }
 
-    fun retrieveCasesbyDescription(inputDesc : String) {
+    fun retrieveCasesbyName(inputName : String) {
         try {
             db
                 .collection(COLLECTION_CASES)
-                .whereEqualTo(FIELD_DESCRIPTION, inputDesc)
+                .whereEqualTo(FIELD_NAME, inputName)
                 .addSnapshotListener(EventListener { result, error ->
                     if (error != null) {
                         Log.e(TAG, "retrieveAllCases: Listening to Expenses collection Failed due to error : $error")

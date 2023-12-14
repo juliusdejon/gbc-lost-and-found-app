@@ -10,39 +10,31 @@
     tools:layout_editor_absoluteY="8dp">
 
     <TextView
-        android:id="@+id/rowLayoutID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ID: 8372628"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/rowLayoutDesc"
+        android:id="@+id/rowLayoutName"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="Item Name"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/rowLayoutID"
-        app:layout_constraintTop_toBottomOf="@+id/rowLayoutID" />
+        app:layout_constraintStart_toStartOf="@+id/rowLayoutType"
+        app:layout_constraintTop_toBottomOf="@+id/rowLayoutType" />
 
     <TextView
         android:id="@+id/rowLayoutType"
-        android:layout_width="wrap_content"
+        android:layout_width="77dp"
         android:layout_height="wrap_content"
         android:text="Type"
-        android:textSize="20sp"
+        android:textSize="14sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="@+id/rowLayoutDesc"
-        app:layout_constraintTop_toBottomOf="@+id/rowLayoutDesc" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/rowLayoutImage"
         android:layout_width="132dp"
         android:layout_height="115dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rowLayoutID"
+        tools:layout_editor_absoluteY="10dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -50,30 +42,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reported By"
-        app:layout_constraintStart_toStartOf="@+id/rowLayoutType"
-        app:layout_constraintTop_toBottomOf="@+id/rowLayoutType" />
-
-    <TextView
-        android:id="@+id/rowLayoutAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address: "
-        app:layout_constraintStart_toStartOf="@+id/rowLayoutReporter"
-        app:layout_constraintTop_toBottomOf="@+id/rowLayoutReporter" />
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/rowLayoutName"
+        app:layout_constraintTop_toBottomOf="@+id/rowLayoutName" />
 
     <TextView
         android:id="@+id/rowLayoutIsClaimed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingHorizontal="20dp"
         android:text="Claimed"
-        android:textColor="@android:color/holo_green_light"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rowLayoutAddress"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/rowLayoutImage" />
 
     <androidx.constraintlayout.widget.Barrier
         android:layout_width="wrap_content"

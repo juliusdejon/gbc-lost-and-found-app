@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -44,8 +43,8 @@ class ReporterCaseAdapter (private val caseList:MutableList<Case>,
         val currCountry: Case = caseList.get(position)
 
         val tvLine1 = holder.itemView.findViewById<TextView>(R.id.rowLayoutID)
-        val tvLine2 = holder.itemView.findViewById<TextView>(R.id.rowLayoutAddress)
-        val tvLine3 = holder.itemView.findViewById<TextView>(R.id.rowLayoutDesc)
+//        val tvLine2 = holder.itemView.findViewById<TextView>(R.id.rowLayoutAddress)
+        val tvLine3 = holder.itemView.findViewById<TextView>(R.id.rowLayoutName)
         val tvLine4 = holder.itemView.findViewById<ImageView>(R.id.rowLayoutImage)
         val tvLine5 = holder.itemView.findViewById<TextView>(R.id.rowLayoutReporter)
         val tvLine6 = holder.itemView.findViewById<TextView>(R.id.rowLayoutType)
@@ -54,7 +53,7 @@ class ReporterCaseAdapter (private val caseList:MutableList<Case>,
         tvLine1.setText("ID: ${currCountry.id}")
 
         //Address
-        tvLine2.setText("${currCountry.address}")
+//        tvLine2.setText("${currCountry.address}")
         //Address
 
         tvLine3.setText("${currCountry.description}")

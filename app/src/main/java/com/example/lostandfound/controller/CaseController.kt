@@ -46,7 +46,7 @@ class CaseController {
     fun createCase(binding: ActivityCreateCaseBinding, categoryList: List<String>, caseRepository: CaseRepository) {
         val imageName = binding.tvImageName.text.toString()
         val name = binding.etName.text.toString()
-        val category = categoryList[binding.sType.selectedItemPosition]
+        val category = categoryList[binding.sType1.selectedItemPosition]
         val description = binding.etDescription.text.toString()
         val addr = binding.etAddress.text.toString()
         val contactNumber = binding.etContactNumber.text.toString()
