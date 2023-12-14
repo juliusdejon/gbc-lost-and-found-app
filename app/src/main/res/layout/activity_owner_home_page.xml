@@ -11,7 +11,7 @@
         android:id="@+id/menu_toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#673AB7"
+        android:background="#154854"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -93,6 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="View All Claims"
+        android:background="#154854"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider2" />

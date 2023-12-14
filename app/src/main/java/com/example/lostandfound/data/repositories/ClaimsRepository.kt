@@ -163,5 +163,7 @@ class ClaimsRepository(private val context : Context) {
         }
     }
 
-    // You can add additional functions for managing claims as needed.
+    fun deleteClaim(){
+        // to be implemented
+    }
 }
