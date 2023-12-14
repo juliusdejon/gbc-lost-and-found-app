@@ -1,5 +1,6 @@
 package com.example.lostandfound.data.repositories
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.lostandfound.models.Case
@@ -10,7 +11,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
 import java.lang.Exception
 
-class ClaimsRepository {
+class ClaimsRepository(private val context : Context) {
 
     private val TAG = this.toString()
 

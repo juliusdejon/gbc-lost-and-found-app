@@ -8,7 +8,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lostandfound.R
+import com.example.lostandfound.controller.AuthController
+import com.example.lostandfound.data.repositories.CaseRepository
+import com.example.lostandfound.data.repositories.ClaimsRepository
+import com.example.lostandfound.data.repositories.UserRepository
 import com.example.lostandfound.databinding.ActivityOwnerHomePageBinding
+import com.example.lostandfound.models.Claims
 import com.example.lostandfound.ui.MainActivity
 import com.example.lostandfound.ui.guest.caseArrayList
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +25,10 @@ class OwnerHomePageActivity:AppCompatActivity() {
     private  lateinit var firebaseAuth : FirebaseAuth
     private var itemID : String? = null
     private var emailID : String? = null
+
+    private lateinit var claimsRepository: ClaimsRepository
+    private lateinit var authController: AuthController
+    private lateinit var userRepository: UserRepository
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -52,6 +61,9 @@ class OwnerHomePageActivity:AppCompatActivity() {
         binding = ActivityOwnerHomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        claimsRepository = ClaimsRepository(applicationContext)
+        userRepository = UserRepository(applicationContext)
+
         //set menu
         setSupportActionBar(this.binding.menuToolbar)
         supportActionBar?.setDisplayShowTitleEnabled(true)
@@ -68,6 +80,8 @@ class OwnerHomePageActivity:AppCompatActivity() {
 
                     Log.d("sankar","here inside owner home page for loop")
 
+                    //adding to claims db
+                    createClaims()
 
                     this.binding.itemAddress.setText("\nADDRESS: ${i.address}")
                     this.binding.itemType.setText("TYPE: ${i.type}")
@@ -90,5 +104,17 @@ class OwnerHomePageActivity:AppCompatActivity() {
                 }
                 }
             }
+
+
+    }
+    fun createClaims(){
+        // to be implemented
+        Log.d("sankar","here inside createClaims")
+        itemID = intent.getStringExtra("EXTRA_ID")
+        emailID = intent.getStringExtra("EMAIL_ID")
+
+        val claims = Claims(itemID.toString(),emailID.toString(),itemID.toString())
+
+        claimsRepository.addClaimsToDB(claims)
     }
 }
