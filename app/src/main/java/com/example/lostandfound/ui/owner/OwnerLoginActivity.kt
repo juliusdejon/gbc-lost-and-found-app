@@ -93,6 +93,7 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
                 if (success) {
                     val intent = Intent(this@OwnerLoginActivity, OwnerHomePageActivity::class.java)
                     intent.putExtra("EXTRA_ID", itemID)
+                    intent.putExtra("EMAIL_ID", email)
                     startActivity(intent)
                 }
             }

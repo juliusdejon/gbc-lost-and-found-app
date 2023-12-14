@@ -11,10 +11,14 @@ import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityOwnerHomePageBinding
 import com.example.lostandfound.ui.MainActivity
 import com.example.lostandfound.ui.guest.caseArrayList
+import com.google.firebase.auth.FirebaseAuth
 
 class OwnerHomePageActivity:AppCompatActivity() {
     private lateinit var binding: ActivityOwnerHomePageBinding
+    private  lateinit var firebaseAuth : FirebaseAuth
     private var itemID : String? = null
+    private var emailID : String? = null
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.claims_menu, menu)
@@ -51,8 +55,10 @@ class OwnerHomePageActivity:AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(true)
 
         itemID = intent.getStringExtra("EXTRA_ID")
+        emailID = intent.getStringExtra("EMAIL_ID")
 
         Log.d("sankar","here inside owner home page")
+        Log.d("sankar","${emailID}")
 
         if (itemID != "") {
             for (i in caseArrayList) {
