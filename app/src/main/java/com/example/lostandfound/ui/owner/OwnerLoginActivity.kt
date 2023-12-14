@@ -25,6 +25,7 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
     private var description : String? = null
     private var address : String? = null
     private var contactNumber : String? = null
+    private var homeFlag : String? = null
     private lateinit var authController: AuthController
     private lateinit var userRepository: UserRepository
 
@@ -42,6 +43,7 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
         description = intent.getStringExtra("DESCRIPTION")
         address = intent.getStringExtra("ADDRESS")
         contactNumber = intent.getStringExtra("CONTACTNUMBER")
+        homeFlag = intent.getStringExtra("HOME_FLAG")
 
         if(itemID != ""){
             for(i in caseArrayList){
@@ -50,6 +52,10 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
                 }
 
             }
+        }
+        else
+        {
+            binding.tvClaimItemText.setText("Login below")
         }
 
 
@@ -98,13 +104,23 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
                     password,
                 )
                 if (success) {
-                    val intent = Intent(this@OwnerLoginActivity, OwnerHomePageActivity::class.java)
-                    intent.putExtra("EXTRA_ID", itemID)
-                    intent.putExtra("EMAIL_ID", email)
-                    intent.putExtra("ADDRESS", address)
-                    intent.putExtra("DESCRIPTION", description)
-                    intent.putExtra("CONTACTNUMBER", contactNumber)
-                    startActivity(intent)
+                    if(homeFlag == "true"){
+                        Log.d("sankar","home flag is true")
+                        val intent = Intent(this@OwnerLoginActivity, OwnerClaimsPage::class.java)
+                        intent.putExtra("EXTRA_ID", itemID)
+                        intent.putExtra("EMAIL_ID", email)
+                        startActivity(intent)
+                    }
+                    else {
+                        val intent =
+                            Intent(this@OwnerLoginActivity, OwnerHomePageActivity::class.java)
+                        intent.putExtra("EXTRA_ID", itemID)
+                        intent.putExtra("EMAIL_ID", email)
+                        intent.putExtra("ADDRESS", address)
+                        intent.putExtra("DESCRIPTION", description)
+                        intent.putExtra("CONTACTNUMBER", contactNumber)
+                        startActivity(intent)
+                    }
                 }
             }
         }

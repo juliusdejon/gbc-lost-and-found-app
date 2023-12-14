@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         binding.btnReport.setOnClickListener(this)
 
+        binding.btnOwner.setOnClickListener(this)
+
         // open intent Guest Activity
         // binding.btnOpenMapView.setOnClickListener(this)
         binding.btnBrowser.setOnClickListener(this)
@@ -58,11 +60,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-//            R.id.btnOwner -> {
-//                Log.d("sankarapp", "clicked on claim an item")
-//                val intent = Intent(this@MainActivity, OwnerLoginActivity::class.java)
-//                startActivity(intent)
-//            }
+            R.id.btnOwner -> {
+                Log.d("sankar","clicked on btnOwner")
+                var intent = Intent(this, OwnerLoginActivity::class.java)
+                intent.putExtra("HOME_FLAG", "true")
+                startActivity(intent)
+            }
 
             R.id.btnReport -> {
                 Log.d("APP", "onClick: ")
