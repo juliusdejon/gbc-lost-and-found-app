@@ -39,6 +39,7 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
          val contactNumberTextView: TextView = viewHolder.itemView.findViewById(R.id.textContactNumber)
          val addressTextView: TextView = viewHolder.itemView.findViewById(R.id.textAddress)
          val callButton: Button = viewHolder.itemView.findViewById<Button>(R.id.buttonCall)
+         val removeButton: Button = viewHolder.itemView.findViewById(R.id.buttonRemove)
 
         Log.d("sankar","here inside onBindViewHolder of ClaimsAdapter")
 
@@ -54,6 +55,16 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
             intent.data = Uri.parse("tel:${claim.contactNumber}")
             viewHolder.itemView.context.startActivity(intent)
 
+        }
+
+        removeButton.setOnClickListener(){
+            Log.d("sankar","remove button clicked")
+
+            // Search for restaurants nearby
+            val gmmIntentUri = Uri.parse("geo:0,0?q=${claim.address}")
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            viewHolder.itemView.context.startActivity(mapIntent)
         }
 
 
