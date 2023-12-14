@@ -44,8 +44,8 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
         Log.d("sankar","here inside onBindViewHolder of ClaimsAdapter")
 
         descriptionTextView.text="Description: ${claim.description}"
-        contactNumberTextView.text="Address: ${claim.contactNumber}"
-        addressTextView.text="Contact Number: ${claim.address}"
+        contactNumberTextView.text="Address: ${claim.address}"
+        addressTextView.text="Contact Number: ${claim.contactNumber}"
 
         callButton.setOnClickListener(){
             Log.d("sankar","call button clicked")
