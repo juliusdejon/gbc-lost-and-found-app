@@ -2,6 +2,7 @@ package com.example.lostandfound.ui.owner
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lostandfound.databinding.ActivityOwnerHomePageBinding
 import com.example.lostandfound.databinding.ActivityViewItemBinding
@@ -14,8 +15,7 @@ class OwnerClaimsPage:AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
+        Log.d("sankar","here inside Owner claims")
         binding = ActivityViewItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
 import androidx.camera.core.CameraSelector
@@ -22,6 +24,7 @@ import androidx.core.content.ContextCompat.startActivity
 import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityMainBinding
 import com.example.lostandfound.ui.guest.GuestActivity
+import com.example.lostandfound.ui.owner.OwnerClaimsPage
 import com.example.lostandfound.ui.owner.OwnerLoginActivity
 import com.example.lostandfound.ui.owner.OwnerSignupActivity
 import com.example.lostandfound.ui.reporter.ReporterLoginActivity
@@ -35,6 +38,8 @@ import java.util.Locale
 class MainActivity : AppCompatActivity(), OnClickListener {
     private val TAG: String = "MainActivity"
     private lateinit var binding: ActivityMainBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

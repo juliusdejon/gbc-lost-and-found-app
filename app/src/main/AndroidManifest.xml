@@ -47,6 +47,9 @@
             android:name=".ui.owner.OwnerHomePageActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.owner.OwnerClaimsPage"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
