@@ -3,10 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".ui.guest.ViewItemActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#154854"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="@+id/menu_toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/menu_toolbar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -14,47 +27,39 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="10dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:padding="16dp">
+
 
         <TextView
-            android:id="@+id/itemDesciription"
+            android:id="@+id/viewItemName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
-            android:text="Description"
+            android:text="Item Name"
             android:textAlignment="viewStart"
-            android:textSize="40sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
 
 
-        <TextView
-            android:id="@+id/itemAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="Address"
-            android:textAllCaps="false"
-            android:textSize="22sp"
-            android:textStyle="italic" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/viewItemID"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:text="ID: 28172816"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="italic" />-->
 
         <TextView
-            android:id="@+id/itemType"
+            android:id="@+id/viewItemType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:text="Type: "
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/itemID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:text="ID : 743638"
-            android:textSize="18sp" />
+            android:text="Type" />
 
         <View
             android:layout_width="match_parent"
@@ -62,10 +67,38 @@
             android:layout_marginTop="10dp"
             android:background="@android:color/darker_gray" />
 
+<!--        <TextView-->
+<!--            android:id="@+id/viewItemName"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:text="Item Name"-->
+<!--            android:textAlignment="viewStart"-->
+<!--            android:textSize="34sp"-->
+<!--            android:textStyle="bold" />-->
+
+
+        <TextView
+            android:id="@+id/viewItemDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Description"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/darker_gray" />
 
         <ImageView
-            android:id="@+id/typeImage"
-            android:layout_width="200dp"
+            android:id="@+id/viewItemImage"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
@@ -78,32 +111,59 @@
             android:background="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/itemReporter"
+            android:id="@+id/viewItemReporter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="serif"
             android:text="Reporter"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
 
         <TextView
-            android:id="@+id/itemIsClaimed"
+            android:id="@+id/viewItemAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Address"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/viewItemContactNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6473625233" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/viewItemisClaimed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
             android:text="CLAIMED"
+            android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/viewItemContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#FF54838E"
+            android:text="Contact to Claim" />
 
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/itemContact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Contact to Claim" />
+
 
 </LinearLayout>

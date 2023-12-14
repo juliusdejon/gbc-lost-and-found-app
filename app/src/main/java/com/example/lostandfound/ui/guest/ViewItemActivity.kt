@@ -11,6 +11,9 @@ import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityViewItemBinding
 import com.example.lostandfound.ui.owner.OwnerLoginActivity
 import com.google.firebase.storage.FirebaseStorage
+import com.mapbox.maps.plugin.annotation.annotations
+import com.squareup.picasso.Picasso
+import java.io.File
 
 class ViewItemActivity : AppCompatActivity() {
 
@@ -30,78 +33,47 @@ class ViewItemActivity : AppCompatActivity() {
             for (i in caseArrayList) {
                 if (itemID == i.id) {
 
-                    this.binding.itemID.setText("${i.id}")
-                    this.binding.itemAddress.setText("${i.address}")
-                    this.binding.itemType.setText("Type: ${i.type}")
-//                    this.binding.propertyCity.setText("${i.city}, ${i.postal}")
-//                    this.binding.propertySpecs.setText("Specifications: ${i.specs}")
-                    this.binding.itemDesciription.setText("${i.description}")
+//                    this.binding.viewItemID.setText("Item ID: ${i.id}")
+
+                    this.binding.viewItemType.setText("Type: ${i.type}")
+
+                    this.binding.viewItemName.setText("${i.name}")
+
+                    this.binding.viewItemDesc.setText("${i.description}")
+
+                    // Use Firebase Storage API to load the image
+                    val storageReference = FirebaseStorage.getInstance().getReference()
+//                    val storageReference = storage.getReferenceFromUrl(downloadUrl)
+
+                    var storageRef = storageReference.child("/images/${i.image}").downloadUrl
+                    storageRef.addOnSuccessListener { uri ->
+                        Picasso.get().load(uri.toString()).into(binding.viewItemImage)
+                    }
+
+                    this.binding.viewItemReporter.setText("Contact: ${i.reporter}")
+                    this.binding.viewItemAddress.setText("Found at: ${i.address}")
+                    this.binding.viewItemContactNum.setText("${i.contactNumber}")
+
                     if (i.isClaimed)
                     {
-                        this.binding.itemIsClaimed.setText("CLAIMED")
-                        this.binding.itemIsClaimed.setTextColor(Color.rgb(1,100,32))
+                        this.binding.viewItemisClaimed.setText("UNAVAILABLE")
+
+                        this.binding.viewItemisClaimed.setTextColor(Color.rgb(255,0,0))
+                        binding.viewItemContact.setEnabled(false)
                     }
                     else
                     {
-                        this.binding.itemIsClaimed.setText("UNCLAIMED")
-                        this.binding.itemIsClaimed.setTextColor(Color.rgb(255,0,0))
+                        this.binding.viewItemisClaimed.setText("AVAILABLE")
+                        this.binding.viewItemisClaimed.setTextColor(Color.rgb(1,100,32))
                     }
-                    this.binding.itemReporter.setText("Contact: ${i.reporter}")
-
-
-
-                    // Assuming you have the downloadUrl from Firebase Storage
-                    val downloadUrl = "gs://georgebrowncollege.appspot.com/images/image_1702266088767.jpg"
-
-                    // Get the reference to your ImageView
-                    val image : ImageView= findViewById(R.id.typeImage)
-
-                    // Use Firebase Storage API to load the image
-                    val storage = FirebaseStorage.getInstance()
-                    val storageReference = storage.getReferenceFromUrl(downloadUrl)
-
-                    // Load the image into ImageView
-                    storageReference.downloadUrl.addOnSuccessListener { uri ->
-                        // Use the uri to set the image in ImageView
-                        image.setImageURI(Uri.parse(uri.toString()))
-                    }.addOnFailureListener { exception ->
-                        // Handle the error
-                        Log.e("FirebaseStorage", "Error getting download URL", exception)
-                    }
-
                     // to do - button click listener for Contact to Claim
-
-                    binding.itemContact.setOnClickListener{
+                    binding.viewItemContact.setOnClickListener{
                         Log.d("sankar","clicked on Contact to Claim")
                         var intent = Intent(this@ViewItemActivity, OwnerLoginActivity::class.java)
                          intent.putExtra("EXTRA_ID", itemID)
                         startActivity(intent)
-
-
                         //need to redirect to signin or signup and then pass along itemId
-
-
                     }
-
-//                    if (i.type == "House") {
-//                        val imagename = "house"
-//                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//                        this.binding.typeImage.setImageResource(res)
-//                    } else if (i.type == "Condo") {
-//                        val imagename = "condo"
-//                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//                        this.binding.typeImage.setImageResource(res)
-//
-//                    } else if (i.type == "Apartment") {
-//                        val imagename = "apartment"
-//                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//                        this.binding.typeImage.setImageResource(res)
-//
-//                    } else if (i.type == "Basement") {
-//                        val imagename = "basement"
-//                        val res = resources.getIdentifier(imagename, "drawable", this.packageName)
-//                        this.binding.typeImage.setImageResource(res)
-//                    }
                 }
             }
         }

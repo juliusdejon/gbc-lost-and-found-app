@@ -1,17 +1,15 @@
 package com.example.lostandfound.adapters
 
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lostandfound.R
 import com.example.lostandfound.models.Case
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 
 
 class CaseAdapter (private val caseList:MutableList<Case>,
@@ -39,61 +37,41 @@ class CaseAdapter (private val caseList:MutableList<Case>,
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        // 1. Get the current user
         val currCountry: Case = caseList.get(position)
 
-        val tvLine1 = holder.itemView.findViewById<TextView>(R.id.rowLayoutID)
-        val tvLine2 = holder.itemView.findViewById<TextView>(R.id.rowLayoutAddress)
-        val tvLine3 = holder.itemView.findViewById<TextView>(R.id.rowLayoutDesc)
+        val tvLine3 = holder.itemView.findViewById<TextView>(R.id.rowLayoutName)
         val tvLine4 = holder.itemView.findViewById<ImageView>(R.id.rowLayoutImage)
         val tvLine5 = holder.itemView.findViewById<TextView>(R.id.rowLayoutReporter)
         val tvLine6 = holder.itemView.findViewById<TextView>(R.id.rowLayoutType)
         val tvLine7 = holder.itemView.findViewById<TextView>(R.id.rowLayoutIsClaimed)
 //
-        tvLine1.setText("ID: ${currCountry.id}")
 
-        //Address
-        tvLine2.setText("${currCountry.address}")
-        //Address
+        tvLine3.setText("${currCountry.name}")
 
-        tvLine3.setText("${currCountry.description}")
-
-
-        // Assuming you have the downloadUrl from Firebase Storage
-        val downloadUrl = "gs://georgebrowncollege.appspot.com/images/image_1702265714965.jpg"
-
-        // Get the reference to your ImageView
-        //        tvLine4
 
         // Use Firebase Storage API to load the image
-        val storage = FirebaseStorage.getInstance()
-        val storageReference = storage.getReferenceFromUrl(downloadUrl)
+        val storageReference = FirebaseStorage.getInstance().getReference()
+//                    val storageReference = storage.getReferenceFromUrl(downloadUrl)
 
-        // Load the image into ImageView
-        storageReference.downloadUrl.addOnSuccessListener { uri ->
-            // Use the uri to set the image in ImageView
-            tvLine4.setImageURI(uri)
-        }.addOnFailureListener { exception ->
-            // Handle the error
-            Log.e("FirebaseStorage", "Error getting download URL", exception)
+        var storageRef = storageReference.child("/images/${currCountry.image}").downloadUrl
+        storageRef.addOnSuccessListener { uri ->
+            Picasso.get().load(uri.toString()).into(tvLine4)
         }
 
-
-
-        tvLine5.setText("${currCountry.reporter}")
+        tvLine5.setText("Reported by: ${currCountry.reporter}")
         tvLine6.setText("${currCountry.type}")
 
         if (currCountry.isClaimed)
         {
-            tvLine7.setText("CLAIMED")
-            tvLine7.setTextColor(Color.rgb(1,100,32))
+            tvLine7.setText("UNAVAILABLE")
+            tvLine7.setBackgroundResource(R.drawable.guest_unclaimed_button)
+
         }
         else
         {
-            tvLine7.setText("NOT CLAIMED")
-            tvLine7.setTextColor(Color.rgb(255,0,0))
+            tvLine7.setText("AVAILABLE")
+            tvLine7.setBackgroundResource(R.drawable.guest_claimed_button)
         }
 
     }
-
 }

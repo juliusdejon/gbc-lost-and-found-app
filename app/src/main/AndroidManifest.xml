@@ -2,12 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LostAndFound"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.reporter.UpdateCaseActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.reporter.ReporterHomePageActivity"
             android:exported="false" />
@@ -48,6 +56,14 @@
             android:exported="false" />
         <activity
             android:name=".ui.owner.OwnerClaimsPage"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.reporter.CameraActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.reporter.CreateCaseActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

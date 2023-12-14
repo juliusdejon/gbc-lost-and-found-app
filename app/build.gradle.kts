@@ -79,4 +79,9 @@ dependencies {
     // used for mapbox
     implementation("com.mapbox.maps:android:11.0.0")
 
+    implementation ("com.squareup.picasso:picasso:2.8")
+
+    // location
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
 }
