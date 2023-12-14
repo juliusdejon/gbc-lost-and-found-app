@@ -14,6 +14,7 @@ import com.example.lostandfound.data.repositories.UserRepository
 import com.example.lostandfound.databinding.ActivityOwnerLoginBinding
 import com.example.lostandfound.ui.guest.caseArrayList
 import com.example.lostandfound.ui.reporter.ReporterHomePageActivity
+import com.example.lostandfound.ui.reporter.ReporterSignupActivity
 import com.mapbox.bindgen.CleanerService.register
 import kotlinx.coroutines.launch
 
@@ -58,7 +59,7 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
                     login()
                 }
                 R.id.btnCreateNewAccount -> {
-                    //implement register()
+                    register()
                 }
             }
         }
@@ -103,6 +104,8 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
 
     private fun register(){
         // to be implemented
+        val intent = Intent(this@OwnerLoginActivity, OwnerSignupActivity::class.java)
+        startActivity(intent)
     }
 
 }

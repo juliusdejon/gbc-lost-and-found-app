@@ -54,6 +54,8 @@ class ViewItemActivity : AppCompatActivity() {
                     this.binding.viewItemAddress.setText("Found at: ${i.address}")
                     this.binding.viewItemContactNum.setText("${i.contactNumber}")
 
+                    Log.d("sankar","here inside viewitem")
+
                     if (i.isClaimed)
                     {
                         this.binding.viewItemisClaimed.setText("UNAVAILABLE")

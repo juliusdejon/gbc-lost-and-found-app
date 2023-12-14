@@ -34,7 +34,7 @@ class ReporterSignupActivity : AppCompatActivity(), OnClickListener {
                     val password = binding.etPassword.text.toString()
                     val name = binding.etName.text.toString()
                     val contactNumber = binding.etContact.text.toString()
-                    val type = "owner"
+                    val type = "reporter"
                     authController.signUp(
                         email,
                         password,

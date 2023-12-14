@@ -25,7 +25,7 @@
         android:gravity="center"
         android:paddingHorizontal="40dp"
         android:textStyle="bold"
-        android:text="Reporting a found item"
+        android:text="Claim a Lost item"
         android:textSize="20sp"
         android:layout_marginBottom="30dp"
         android:layout_weight="0.2"/>
@@ -59,7 +59,7 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="reporter@gmail.com"
+            android:hint="owner@gmail.com"
             android:paddingTop="8dp"
             android:inputType="textEmailAddress" />
 

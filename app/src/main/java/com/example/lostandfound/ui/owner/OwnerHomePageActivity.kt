@@ -12,6 +12,8 @@ import com.example.lostandfound.databinding.ActivityOwnerHomePageBinding
 import com.example.lostandfound.ui.MainActivity
 import com.example.lostandfound.ui.guest.caseArrayList
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 
 class OwnerHomePageActivity:AppCompatActivity() {
     private lateinit var binding: ActivityOwnerHomePageBinding
@@ -67,12 +69,18 @@ class OwnerHomePageActivity:AppCompatActivity() {
                     Log.d("sankar","here inside owner home page for loop")
 
 
-                    this.binding.itemID.setText("You have claimed: ${i.id}")
-                    this.binding.itemAddress.setText("${i.address}")
-                    this.binding.itemType.setText("Type: ${i.type}")
-//                    this.binding.propertyCity.setText("${i.city}, ${i.postal}")
-//                    this.binding.propertySpecs.setText("Specifications: ${i.specs}")
-                    this.binding.itemDesciription.setText("You have claimed: ${i.description}")
+                    this.binding.itemAddress.setText("\nADDRESS: ${i.address}")
+                    this.binding.itemType.setText("TYPE: ${i.type}")
+                    this.binding.itemDesciription.setText("You are trying to claim: \n${i.description}")
+
+                    // Use Firebase Storage API to load the image
+                    val storageReference = FirebaseStorage.getInstance().getReference()
+//                    val storageReference = storage.getReferenceFromUrl(downloadUrl)
+
+                    var storageRef = storageReference.child("/images/${i.image}").downloadUrl
+                    storageRef.addOnSuccessListener { uri ->
+                        Picasso.get().load(uri.toString()).into(binding.viewItemImage)
+                    }
 
                     binding.btnViewClaims.setOnClickListener{
                         val intent = Intent(this@OwnerHomePageActivity, OwnerClaimsPage::class.java)
