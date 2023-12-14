@@ -22,6 +22,9 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
     private lateinit var binding:ActivityOwnerLoginBinding
 
     private var itemID : String? = null
+    private var description : String? = null
+    private var address : String? = null
+    private var contactNumber : String? = null
     private lateinit var authController: AuthController
     private lateinit var userRepository: UserRepository
 
@@ -36,6 +39,9 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
 
 
         itemID = intent.getStringExtra("EXTRA_ID")
+        description = intent.getStringExtra("DESCRIPTION")
+        address = intent.getStringExtra("ADDRESS")
+        contactNumber = intent.getStringExtra("CONTACTNUMBER")
 
         if(itemID != ""){
             for(i in caseArrayList){
@@ -95,6 +101,9 @@ class OwnerLoginActivity:AppCompatActivity(), OnClickListener {
                     val intent = Intent(this@OwnerLoginActivity, OwnerHomePageActivity::class.java)
                     intent.putExtra("EXTRA_ID", itemID)
                     intent.putExtra("EMAIL_ID", email)
+                    intent.putExtra("ADDRESS", address)
+                    intent.putExtra("DESCRIPTION", description)
+                    intent.putExtra("CONTACTNUMBER", contactNumber)
                     startActivity(intent)
                 }
             }

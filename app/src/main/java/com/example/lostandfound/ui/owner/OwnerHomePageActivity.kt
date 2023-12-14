@@ -25,6 +25,9 @@ class OwnerHomePageActivity:AppCompatActivity() {
     private  lateinit var firebaseAuth : FirebaseAuth
     private var itemID : String? = null
     private var emailID : String? = null
+    private var description : String? = null
+    private var address : String? = null
+    private var contactNumber : String? = null
 
     private lateinit var claimsRepository: ClaimsRepository
     private lateinit var authController: AuthController
@@ -78,6 +81,7 @@ class OwnerHomePageActivity:AppCompatActivity() {
 
         Log.d("sankar","here inside owner home page")
         Log.d("sankar","${emailID}")
+        Log.d("sankar","${itemID}")
 
         if (itemID != "") {
             for (i in caseArrayList) {
@@ -120,8 +124,12 @@ class OwnerHomePageActivity:AppCompatActivity() {
         Log.d("sankar","here inside createClaims")
         itemID = intent.getStringExtra("EXTRA_ID")
         emailID = intent.getStringExtra("EMAIL_ID")
+        description = intent.getStringExtra("DESCRIPTION")
+        address = intent.getStringExtra("ADDRESS")
+        contactNumber = intent.getStringExtra("CONTACTNUMBER")
 
-        val claims = Claims(itemID.toString(),emailID.toString(),itemID.toString())
+
+        val claims = Claims(itemID.toString(),emailID.toString(),itemID.toString(),description.toString(),address.toString(),contactNumber.toString())
 
         claimsRepository.addClaimsToDB(claims)
     }

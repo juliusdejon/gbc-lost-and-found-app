@@ -22,6 +22,10 @@ class ClaimsRepository(private val context : Context) {
     private val FIELD_EMAILID = "emailId"
     private val FIELD_ID = "id"
 
+    private val FIELD_DESCRIPTION = "description"
+    private val FIELD_ADDRESS = "address"
+    private val FIELD_CONTACT_NUMBER = "contactNumber"
+
     var allClaims : MutableLiveData<List<Claims>> = MutableLiveData<List<Claims>>()
     var allCases : MutableLiveData<List<Case>> = MutableLiveData<List<Case>>()
     fun addClaimsToDB(newClaims: Claims){
@@ -31,6 +35,9 @@ class ClaimsRepository(private val context : Context) {
             data[FIELD_CASEID] = newClaims.caseId
             data[FIELD_EMAILID] = newClaims.emailId
             data[FIELD_ID] = newClaims.id
+            data[FIELD_DESCRIPTION]=newClaims.description
+            data[FIELD_ADDRESS]=newClaims.address
+            data[FIELD_CONTACT_NUMBER]=newClaims.contactNumber
 
             // Add the claim document to the Claims collection
             db.collection(COLLECTION_CLAIMS)
@@ -70,9 +77,12 @@ class ClaimsRepository(private val context : Context) {
                             val cCaseId = docChanges.document.data[FIELD_CASEID]?.toString() ?: ""
                             val cEmailId = docChanges.document.data[FIELD_EMAILID]?.toString() ?: ""
                             val cId = docChanges.document.data[FIELD_ID]?.toString() ?: ""
+                            val cDescription = docChanges.document.data[FIELD_DESCRIPTION]?.toString() ?: ""
+                            val cAddress = docChanges.document.data[FIELD_ADDRESS]?.toString() ?: ""
+                            val cContactNumber = docChanges.document.data[FIELD_CONTACT_NUMBER]?.toString() ?: ""
 
 
-                            val claim = Claims("1", cEmailId, cId)
+                            val claim = Claims("1", cEmailId, cId, cDescription, cAddress, cContactNumber)
 
                             Log.d(TAG, "retrieveAllClaims: Current Document: $claim")
 
@@ -119,9 +129,11 @@ class ClaimsRepository(private val context : Context) {
                             val cCaseId = docChanges.document.data[FIELD_CASEID]?.toString() ?: ""
                             val cEmailId = docChanges.document.data[FIELD_EMAILID]?.toString() ?: ""
                             val cId = docChanges.document.data[FIELD_ID]?.toString() ?: ""
+                            val cDescription = docChanges.document.data[FIELD_DESCRIPTION]?.toString() ?: ""
+                            val cAddress = docChanges.document.data[FIELD_ADDRESS]?.toString() ?: ""
+                            val cContactNumber = docChanges.document.data[FIELD_CONTACT_NUMBER]?.toString() ?: ""
 
-
-                            val claim = Claims("1", cEmailId, cId)
+                            val claim = Claims("1", cEmailId, cId,cDescription,cAddress,cContactNumber)
 
                             Log.d(TAG, "retrieveAllClaims: Current Document: $claim")
                             Log.d("sankar",emailIduser)

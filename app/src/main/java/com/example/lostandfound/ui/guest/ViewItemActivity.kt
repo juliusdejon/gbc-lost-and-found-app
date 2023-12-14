@@ -73,6 +73,9 @@ class ViewItemActivity : AppCompatActivity() {
                         Log.d("sankar","clicked on Contact to Claim")
                         var intent = Intent(this@ViewItemActivity, OwnerLoginActivity::class.java)
                          intent.putExtra("EXTRA_ID", itemID)
+                        intent.putExtra("ADDRESS", i.address)
+                        intent.putExtra("DESCRIPTION", i.description)
+                        intent.putExtra("CONTACTNUMBER", i.contactNumber)
                         startActivity(intent)
                         //need to redirect to signin or signup and then pass along itemId
                     }
