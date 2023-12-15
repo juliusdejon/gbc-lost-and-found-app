@@ -81,6 +81,7 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginVertical="100dp"
             android:rotation="90"
             android:src="@drawable/logo" />
 
