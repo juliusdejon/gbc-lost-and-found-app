@@ -17,21 +17,21 @@
 ## Screenshots
 
 <div style='display: flex'>
-<img src='./1.png' alt='tokyo' width='300' />
-<img src='./2.png' alt='weather-history-plain' width='300' />
-<img src='./3.png' alt='weather-history-plain' width='300' />
+<img src='./1.png' alt='tokyo' width='200' />
+<img src='./2.png' alt='weather-history-plain' width='200' />
+<img src='./3.png' alt='weather-history-plain' width='200' />
 </div>
 
 <div style='display: flex'>
-<img src='./6.png' alt='weather-history-plain' width='300' />
-  <img src='./8.png' alt='weather-history-plain' width='300' />
-<img src='./9.png' alt='weather-history-plain' width='300' />
+<img src='./6.png' alt='weather-history-plain' width='200' />
+  <img src='./8.png' alt='weather-history-plain' width='200' />
+<img src='./9.png' alt='weather-history-plain' width='200' />
 </div>
 
 <div style='display: flex'>
-<img src='./10.png' alt='tokyo' width='300' />
-<img src='./12.png' alt='weather-history-plain' width='300' />
-<img src='./13.png' alt='tokyo' width='300' />
+<img src='./10.png' alt='tokyo' width='200' />
+<img src='./12.png' alt='weather-history-plain' width='200' />
+<img src='./13.png' alt='tokyo' width='200' />
   
 </div>
 
