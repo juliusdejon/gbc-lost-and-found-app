@@ -41,7 +41,7 @@
          android:layout_margin="10dp"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:backgroundTint="#4CAF50"
+         android:backgroundTint="#1abc9c"
          android:text="Call" />
 
      <Button
@@ -49,16 +49,8 @@
          android:layout_margin="10dp"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:backgroundTint="#F44336"
-         android:text="Navigate" />
-
-     <Button
-         android:id="@+id/buttonDelete"
-         android:layout_margin="10dp"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:backgroundTint="#F44336"
-         android:text="Remove" />
+         android:backgroundTint="#3498db"
+         android:text="Directions" />
 
  </LinearLayout>
 

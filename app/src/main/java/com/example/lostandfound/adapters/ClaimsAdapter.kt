@@ -43,7 +43,7 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
          val addressTextView: TextView = viewHolder.itemView.findViewById(R.id.textAddress)
          val callButton: Button = viewHolder.itemView.findViewById<Button>(R.id.buttonCall)
          val removeButton: Button = viewHolder.itemView.findViewById(R.id.buttonRemove)
-         val deleteButton: Button = viewHolder.itemView.findViewById(R.id.buttonDelete)
+//         val deleteButton: Button = viewHolder.itemView.findViewById(R.id.buttonDelete)
 
         Log.d("sankar","here inside onBindViewHolder of ClaimsAdapter")
 
@@ -70,12 +70,12 @@ class ClaimsAdapter(private var claimsList: MutableList<Claims>) :
             mapIntent.setPackage("com.google.android.apps.maps")
             viewHolder.itemView.context.startActivity(mapIntent)
         }
-
-        deleteButton.setOnClickListener(){
-            Log.d("sankar","here inside delete listener")
-            claimsRepository = ClaimsRepository(viewHolder.itemView.context)
-            claimsRepository.deleteClaim(claim.id)
-        }
+//
+//        deleteButton.setOnClickListener(){
+//            Log.d("sankar","here inside delete listener")
+//            claimsRepository = ClaimsRepository(viewHolder.itemView.context)
+//            claimsRepository.deleteClaim(claim.id)
+//        }
 
 
     }

@@ -67,7 +67,7 @@ class OwnerClaimsPage:AppCompatActivity() {
 
         //set menu
         setSupportActionBar(this.binding.menuToolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         itemID = intent.getStringExtra("EXTRA_ID")
         emailID = intent.getStringExtra("EMAIL_ID")
