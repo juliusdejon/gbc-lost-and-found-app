@@ -35,7 +35,8 @@
         android:layout_height="115dp"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="10dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:rotation="90"/>
 
     <TextView
         android:id="@+id/rowLayoutReporter"
