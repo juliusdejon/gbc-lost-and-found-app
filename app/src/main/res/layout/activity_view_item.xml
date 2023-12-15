@@ -43,18 +43,6 @@
             android:textStyle="bold" />
 
 
-
-<!--        <TextView-->
-<!--            android:id="@+id/viewItemID"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:fontFamily="sans-serif"-->
-<!--            android:text="ID: 28172816"-->
-<!--            android:textAlignment="textStart"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="italic" />-->
-
         <TextView
             android:id="@+id/viewItemType"
             android:layout_width="match_parent"
@@ -66,17 +54,6 @@
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
             android:background="@android:color/darker_gray" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/viewItemName"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:fontFamily="sans-serif"-->
-<!--            android:text="Item Name"-->
-<!--            android:textAlignment="viewStart"-->
-<!--            android:textSize="34sp"-->
-<!--            android:textStyle="bold" />-->
 
 
         <TextView
