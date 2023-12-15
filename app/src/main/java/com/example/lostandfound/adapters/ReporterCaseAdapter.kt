@@ -56,7 +56,7 @@ class ReporterCaseAdapter (private val caseList:MutableList<Case>,
 //        tvLine2.setText("${currCountry.address}")
         //Address
 
-        tvLine3.setText("${currCountry.description}")
+        tvLine3.setText("${currCountry.name}")
 
 
         val storageReference = FirebaseStorage.getInstance().getReference("images/${currCountry.image}")

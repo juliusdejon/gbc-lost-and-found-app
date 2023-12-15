@@ -38,9 +38,9 @@ class MapViewActivity : AppCompatActivity() {
         for (i in caseArrayList) {
             out += "\n${i.name}"
             if(caseArrayList.size > 1) {
-                getCoordinatesandaddAnnotation(i.address)
+                getCoordinatesandaddAnnotation(i.address, i.name)
                 } else {
-                    getCoordinatesandaddAnnotationforOne(i.address)
+                    getCoordinatesandaddAnnotationforOne(i.address, i.name)
                 }
             }
 
@@ -48,7 +48,7 @@ class MapViewActivity : AppCompatActivity() {
 
     }
 
-    private fun getCoordinatesandaddAnnotation(address : String) {
+    private fun getCoordinatesandaddAnnotation(address : String, name: String) {
         val geocoder: Geocoder = Geocoder(applicationContext, Locale.getDefault())
 
         val addressFromUI = address
@@ -65,7 +65,7 @@ class MapViewActivity : AppCompatActivity() {
                 binding.tvResults.setText("Search results are empty.")
             } else {
                 val foundLocation: Address = searchResults.get(0)
-                addAnnotationToMap(foundLocation.latitude, foundLocation.longitude)
+                addAnnotationToMap(foundLocation.latitude, foundLocation.longitude, name)
             }
 
         } catch(ex:Exception) {
@@ -74,7 +74,7 @@ class MapViewActivity : AppCompatActivity() {
         }
     }
 
-    private fun addAnnotationToMap(lat:Double, lng:Double, @DrawableRes drawableImageResourceId: Int = R.drawable.red_marker) {
+    private fun addAnnotationToMap(lat:Double, lng:Double, name :String, @DrawableRes drawableImageResourceId: Int = R.drawable.red_marker) {
         Log.d(TAG, "Attempting to add annotation to map")
 
         val icon = MapboxUtils.bitmapFromDrawableRes(applicationContext, drawableImageResourceId)
@@ -94,11 +94,16 @@ class MapViewActivity : AppCompatActivity() {
         val pointAnnotationOptions: PointAnnotationOptions = PointAnnotationOptions()
             .withPoint(Point.fromLngLat(lng, lat))
             .withIconImage(icon)
+            .withTextField("${name}")  // Set your label text here
+            .withTextOffset(arrayOf(0.0, 2.0).toList())   // Adjust the offset as needed
+            .withTextSize(12.0)                  // Set the text size as needed
+//            .withTextAnchor()              // Anchor the text to the top of the icon
+//            .withTextJustify("auto")
 
         pointAnnotationManager?.create(pointAnnotationOptions)
     }
 
-    private fun getCoordinatesandaddAnnotationforOne(address : String) {
+    private fun getCoordinatesandaddAnnotationforOne(address : String, name: String) {
         val geocoder: Geocoder = Geocoder(applicationContext, Locale.getDefault())
 
         val addressFromUI = address
@@ -115,7 +120,7 @@ class MapViewActivity : AppCompatActivity() {
                 binding.tvResults.setText("Search results are empty.")
             } else {
                 val foundLocation: Address = searchResults.get(0)
-                addAnnotationToMap(foundLocation.latitude, foundLocation.longitude)
+                addAnnotationToMap(foundLocation.latitude, foundLocation.longitude, name)
 
                 //camera
                 binding.mapView.mapboxMap.setCamera(
