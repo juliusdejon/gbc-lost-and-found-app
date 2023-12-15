@@ -94,22 +94,25 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            android:layout_weight="0"/>
 
         <ImageView
             android:id="@+id/viewItemImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:src="@drawable/logo"
-            android:rotation="90"/>
+            android:rotation="90"
+            android:src="@drawable/logo" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            android:layout_weight="0"/>
 
         <TextView
             android:id="@+id/viewItemReporter"
