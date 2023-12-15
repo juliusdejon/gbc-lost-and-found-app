@@ -33,10 +33,10 @@
         android:id="@+id/rowLayoutImage"
         android:layout_width="132dp"
         android:layout_height="115dp"
+        android:rotation="90"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="10dp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:rotation="90"/>
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/rowLayoutReporter"
@@ -51,17 +51,15 @@
         android:id="@+id/rowLayoutIsClaimed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:paddingHorizontal="20dp"
         android:text="Claimed"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rowLayoutImage" />
+        app:layout_constraintStart_toStartOf="@+id/rowLayoutReporter"
+        app:layout_constraintTop_toBottomOf="@+id/rowLayoutReporter" />
 
     <androidx.constraintlayout.widget.Barrier
         android:layout_width="wrap_content"
