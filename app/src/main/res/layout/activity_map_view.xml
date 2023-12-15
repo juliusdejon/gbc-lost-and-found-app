@@ -35,7 +35,7 @@
         app:mapbox_cameraPitch="0.0"
         app:mapbox_cameraTargetLat="43.6532"
         app:mapbox_cameraTargetLng="-79.3832"
-        app:mapbox_cameraZoom="3.0"/>
+        app:mapbox_cameraZoom="10.0"/>
 
 </LinearLayout>
 
