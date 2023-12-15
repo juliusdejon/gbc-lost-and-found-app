@@ -43,18 +43,6 @@
             android:textStyle="bold" />
 
 
-
-<!--        <TextView-->
-<!--            android:id="@+id/viewItemID"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:fontFamily="sans-serif"-->
-<!--            android:text="ID: 28172816"-->
-<!--            android:textAlignment="textStart"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="italic" />-->
-
         <TextView
             android:id="@+id/viewItemType"
             android:layout_width="match_parent"
@@ -66,17 +54,6 @@
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
             android:background="@android:color/darker_gray" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/viewItemName"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:fontFamily="sans-serif"-->
-<!--            android:text="Item Name"-->
-<!--            android:textAlignment="viewStart"-->
-<!--            android:textSize="34sp"-->
-<!--            android:textStyle="bold" />-->
 
 
         <TextView
@@ -94,21 +71,26 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            android:layout_weight="0"/>
 
         <ImageView
             android:id="@+id/viewItemImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginVertical="100dp"
+            android:rotation="90"
             android:src="@drawable/logo" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray"
+            android:layout_weight="0"/>
 
         <TextView
             android:id="@+id/viewItemReporter"

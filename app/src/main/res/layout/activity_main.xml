@@ -44,6 +44,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <Button
+        android:id="@+id/btnOwner"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FF54838E"
+        android:text="View Claims"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnBrowser"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,6 +81,20 @@
         android:backgroundTint="@color/white"
     />
 
+<!--    <Button-->
+<!--        android:id="@+id/btnOwner"-->
+<!--        android:layout_width="240dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        android:text="Claim an item"-->
+<!--        android:textColor="#154854"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/btnBrowser"-->
+<!--        app:layout_constraintHorizontal_bias="0.502"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

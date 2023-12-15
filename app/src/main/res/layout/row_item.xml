@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description: "
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address: "
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textContactNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Number: "
+        android:textSize="16sp" />
+
+
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+
+     android:orientation="horizontal">
+
+     <Button
+         android:id="@+id/buttonCall"
+         android:layout_margin="10dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:backgroundTint="#1abc9c"
+         android:text="Call" />
+
+     <Button
+         android:id="@+id/buttonRemove"
+         android:layout_margin="10dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:backgroundTint="#3498db"
+         android:text="Directions" />
+
+ </LinearLayout>
+
+
+</LinearLayout>

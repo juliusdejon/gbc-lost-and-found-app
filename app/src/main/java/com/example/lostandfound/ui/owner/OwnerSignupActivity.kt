@@ -1,23 +1,24 @@
-package com.example.lostandfound.ui.reporter
+package com.example.lostandfound.ui.owner
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import androidx.appcompat.app.AppCompatActivity
 import com.example.lostandfound.R
-import com.example.lostandfound.data.repositories.UserRepository
-import com.example.lostandfound.databinding.ActivityReporterSignupBinding
 import com.example.lostandfound.controller.AuthController
-import com.google.firebase.auth.FirebaseAuth
+import com.example.lostandfound.data.repositories.UserRepository
+import com.example.lostandfound.databinding.ActivityOwnerSignupBinding
 
-class ReporterSignupActivity : AppCompatActivity(), OnClickListener {
-    private lateinit var binding: ActivityReporterSignupBinding
+class OwnerSignupActivity:AppCompatActivity(), OnClickListener {
+    private lateinit var binding: ActivityOwnerSignupBinding
     private lateinit var userRepository: UserRepository
     private lateinit var authController: AuthController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.binding = ActivityReporterSignupBinding.inflate(layoutInflater)
+        Log.d("sankar","here inside owner signup")
+        this.binding = ActivityOwnerSignupBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
 
         binding.btnSignUp.setOnClickListener(this)
@@ -34,7 +35,7 @@ class ReporterSignupActivity : AppCompatActivity(), OnClickListener {
                     val password = binding.etPassword.text.toString()
                     val name = binding.etName.text.toString()
                     val contactNumber = binding.etContact.text.toString()
-                    val type = "reporter"
+                    val type = "owner"
                     authController.signUp(
                         email,
                         password,

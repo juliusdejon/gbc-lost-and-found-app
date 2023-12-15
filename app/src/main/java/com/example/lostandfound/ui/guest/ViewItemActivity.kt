@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.ImageView
 import com.example.lostandfound.R
 import com.example.lostandfound.databinding.ActivityViewItemBinding
+import com.example.lostandfound.ui.owner.OwnerLoginActivity
 import com.google.firebase.storage.FirebaseStorage
 import com.mapbox.maps.plugin.annotation.annotations
 import com.squareup.picasso.Picasso
@@ -53,6 +54,8 @@ class ViewItemActivity : AppCompatActivity() {
                     this.binding.viewItemAddress.setText("Found at: ${i.address}")
                     this.binding.viewItemContactNum.setText("${i.contactNumber}")
 
+                    Log.d("sankar","here inside viewitem")
+
                     if (i.isClaimed)
                     {
                         this.binding.viewItemisClaimed.setText("UNAVAILABLE")
@@ -65,7 +68,17 @@ class ViewItemActivity : AppCompatActivity() {
                         this.binding.viewItemisClaimed.setText("AVAILABLE")
                         this.binding.viewItemisClaimed.setTextColor(Color.rgb(1,100,32))
                     }
-
+                    // to do - button click listener for Contact to Claim
+                    binding.viewItemContact.setOnClickListener{
+                        Log.d("sankar","clicked on Contact to Claim")
+                        var intent = Intent(this@ViewItemActivity, OwnerLoginActivity::class.java)
+                         intent.putExtra("EXTRA_ID", itemID)
+                        intent.putExtra("ADDRESS", i.address)
+                        intent.putExtra("DESCRIPTION", i.description)
+                        intent.putExtra("CONTACTNUMBER", i.contactNumber)
+                        startActivity(intent)
+                        //need to redirect to signin or signup and then pass along itemId
+                    }
                 }
             }
         }
